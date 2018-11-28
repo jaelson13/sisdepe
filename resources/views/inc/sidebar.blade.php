@@ -11,7 +11,7 @@
     <div class="sidebar-wrapper">
         <ul class="nav">            
             <li class="@yield('musuario')">
-                <a href="/usuarios">
+                <a href="/users">
                     <i class="now-ui-icons users_single-02"></i>
                     <p>Usuarios</p>
                 </a>
