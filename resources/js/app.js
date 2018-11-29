@@ -21,6 +21,18 @@ Vue.component('example-component', require('./components/ExampleComponent.vue'))
 Vue.component('users-component', require('./components/user/Users.vue'));
 Vue.component('newuser-component', require('./components/user/NewUser.vue'));
 Vue.component('edituser-component', require('./components/user/EditUser.vue'));
+Vue.component('typeofocurrence-component', require('./components/ocurrence_type/TypeOfOcurrence.vue'));
+Vue.component('newtypeofocorrence-component', require('./components/ocurrence_type/NewTypeOfOcorrence.vue'));
+Vue.component('edittypeofocorrence-component', require('./components/ocurrence_type/EditTypeOfOcorrence.vue'));
+Vue.component('courses-component', require('./components/course/Courses.vue'));
+Vue.component('newcourse-component', require('./components/course/NewCourse.vue'));
+Vue.component('editcourse-component', require('./components/course/EditCourse.vue'));
+Vue.component('grades-component', require('./components/grades/Grades.vue'));
+Vue.component('newgrade-component', require('./components/grades/NewGrade.vue'));
+Vue.component('editgrade-component', require('./components/grades/EditGrade.vue'));
+Vue.component('courseusers-component', require('./components/course_users/CourseUsers.vue'));
+Vue.component('courseaddusers-component', require('./components/course_users/CourseAddUsers.vue'));
+
 
 // const files = require.context('./', true, /\.vue$/i)
 

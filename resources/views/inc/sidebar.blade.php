@@ -17,7 +17,7 @@
                 </a>
             </li>
             <li class="@yield('mcurso')">
-                 <a href="/curso">
+                 <a href="/courses">
                      <i class="fa fa-book"></i>
                      <p>Cursos</p>
                  </a>
@@ -29,9 +29,9 @@
                 </a>
             </li>
             <li class="@yield('mtipodemandas')">
-                <a href="/tipodemandas">
+                <a href="/typesofocurrences">
                     <i class="now-ui-icons shopping_tag-content"></i>
-                    <p>Tipos de Demandas</p>
+                    <p>Tipos de Ocorrências</p>
                 </a>
             </li>          
             <li class="@yield('mprojetos')">
