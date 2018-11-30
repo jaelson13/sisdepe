@@ -42,7 +42,7 @@
                     </tr>
                     </thead>
                     <tbody>                                                                       
-                    <tr v-for="user in filterUser" :key="user.code">
+                    <tr v-for="user in filterUser" v-bind:key="user.code">
                         <td>
                             <input v-model="checkdados" :value="user.code" type="checkbox" name="user" id="user">
                         </td>                        
@@ -99,7 +99,6 @@
                 }
             }
         },
-
         methods: {
             async addUsers(){                
                 try{

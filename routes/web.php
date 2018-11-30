@@ -1,7 +1,19 @@
 <?php
 
 Route::get('/', function () {
-    return view('pages.dashboard');
+    if(isset($_COOKIE["isLogging"])){
+        return redirect('/home');
+    }else{
+        return view('pages.login');
+    }
+});
+
+Route::get('/home', function () {
+    if(isset($_COOKIE["isLogging"])){
+        return view('pages.dashboard');
+    }else{
+        return view('pages.login');    
+    }
 });
 
 Route::get('/users', function () {

@@ -18,6 +18,8 @@ window.Vue = require('vue');
  */
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('login-component', require('./components/user/Login.vue'));
+Vue.component('logout-component', require('./components/user/Logout.vue'));
 Vue.component('users-component', require('./components/user/Users.vue'));
 Vue.component('newuser-component', require('./components/user/NewUser.vue'));
 Vue.component('edituser-component', require('./components/user/EditUser.vue'));
@@ -32,6 +34,8 @@ Vue.component('newgrade-component', require('./components/grades/NewGrade.vue'))
 Vue.component('editgrade-component', require('./components/grades/EditGrade.vue'));
 Vue.component('courseusers-component', require('./components/course_users/CourseUsers.vue'));
 Vue.component('courseaddusers-component', require('./components/course_users/CourseAddUsers.vue'));
+Vue.component('sidebar-component', require('./components/layout/Sidebar.vue'));
+
 
 
 // const files = require.context('./', true, /\.vue$/i)

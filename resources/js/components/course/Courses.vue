@@ -68,9 +68,18 @@ export default {
         
     },
     async mounted(){
-        try{                             
-            const response = await axios.get("https://sidespe-api.herokuapp.com/courses/");       
-            this.courses = response.data;                                                    
+        try{
+            const localUser = JSON.parse(localStorage.getItem('user'));                             
+            const response = await axios.get("https://sidespe-api.herokuapp.com/courses/");                                                                      
+            if(localUser.type === 'COORDINATOR'){                
+                response.data.forEach(course => {                   
+                   if(course.users.findIndex(user => user.code == localUser.code) === 0){
+                       this.courses.push(course)
+                   }                                    
+                });
+            }else{
+                this.courses = response.data; 
+            }
         }catch(err){
             console.log(err)
         }      

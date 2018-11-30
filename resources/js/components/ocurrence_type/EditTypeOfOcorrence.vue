@@ -32,7 +32,7 @@
 
 <script>
 export default {
-    props: ['typeocorrencecode'],
+    props: ['typeocurrencecode'],
     data(){
         return{
             typeocurrence: {
@@ -77,9 +77,8 @@ export default {
     },
     async mounted(){
              try{        
-                this.typeocurrence.code = JSON.parse(this.typeocorrencecode);                      
-                const response = await axios.get("https://sidespe-api.herokuapp.com/ocurrencetypes/"+this.typeocurrence.code);       
-                console.log(response.data);
+                this.typeocurrence.code = JSON.parse(this.typeocurrencecode);                      
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/ocurrencetypes/${this.typeocurrence.code}`);                       
                 this.typeocurrence = response.data;                                                    
             }catch(err){
                 console.log(err)

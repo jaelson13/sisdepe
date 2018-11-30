@@ -123,7 +123,7 @@ export default {
                 this.users = response.data;
             }catch(err){
                 console.log(err);
-            }
+            }            
     }
 }
 </script>
