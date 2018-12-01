@@ -1,7 +1,7 @@
 <template>
     <div>
         <form method="POST" @submit="validateCurso" id="dados">            
-            <h3 class="title text-center mb-1" id="novoModalLabel">Novo Curso</h3>
+            <h3 class="title text-center mb-1" id="novoModalLabel">Editar Curso</h3>
 
             <div class="modal-body">
                 <div class="row">                                                        

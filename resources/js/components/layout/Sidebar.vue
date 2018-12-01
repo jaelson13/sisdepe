@@ -12,7 +12,7 @@
                     <i class="fa fa-book"></i>
                     <p>Cursos</p>
                 </a>
-            </li>           
+            </li>          
             <li>
                 <a href="/typesofocurrences">
                     <i class="now-ui-icons shopping_tag-content"></i>
@@ -25,6 +25,26 @@
                 <a href="/courses">
                     <i class="fa fa-book"></i>
                     <p>Cursos</p>
+                </a>
+            </li>
+            <li>
+                <a href="/demandas">
+                    <i class="fa fa-book"></i>
+                    <p>Demandas</p>
+                </a>
+            </li> 
+        </div>
+        <div v-show="isTeacher">
+            <li>
+                <a href="/ocurrences">
+                    <i class="fa fa-book"></i>
+                    <p>Ocorrências</p>
+                </a>
+            </li>
+             <li>
+                <a href="/projects">
+                    <i class="fa fa-book"></i>
+                    <p>Projetos</p>
                 </a>
             </li>
         </div>

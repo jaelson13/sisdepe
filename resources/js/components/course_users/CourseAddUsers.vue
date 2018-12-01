@@ -6,7 +6,7 @@
                     <h5 class="title pt-2">Adicionar usuários ao curso</h5>                    
                 </div>
                 <div class="col-md-5 pr-4">
-                    <a class="btn btn-success float-right" href="" @click.prevent='addUsers' v-bind:disabled="(checkdados.length < 1)">Adicionar</a>
+                    <a class="btn btn-success float-right" href="" @click.prevent='addUsers' v-bind:disabled="checkdados.length < 1 || buttonDisable">Adicionar</a>
                 </div>
             </div>
         </div>
@@ -86,7 +86,8 @@
                 checkdados: [],
                 codecourse: null,
                 showAlert: false,
-                usersJaAdd: []
+                usersJaAdd: [],
+                buttonDisable: false
             }
         },
         computed: {
@@ -102,18 +103,19 @@
         methods: {
             async addUsers(){                
                 try{
-                let users  = []
-                this.checkdados.forEach(userCode => users.push({code: userCode}));                                          
-                const response = await axios.put(`https://sidespe-api.herokuapp.com/courses/${this.codecourse}/teachers`, users);                                           
-                if(response.status === 201){
-                    this.showAlert = true;
-                    setTimeout(() => {
-                        window.location.href=`http://127.0.0.1:8000/courses/${this.codecourse}/users`;                        
-                    }, 3000); 
-                }
-            }catch(err){
-                console.log(err)
-            }   
+                    this.buttonDisable = true;     
+                    let users  = [];
+                    this.checkdados.forEach(userCode => users.push({code: userCode}));                                          
+                    const response = await axios.put(`https://sidespe-api.herokuapp.com/courses/${this.codecourse}/teachers`, users);                                           
+                    if(response.status === 201){
+                        this.showAlert = true;
+                        setTimeout(() => {
+                            window.location.href=`http://127.0.0.1:8000/courses/${this.codecourse}/users`;                        
+                        }, 3000); 
+                    }
+                }catch(err){
+                    console.log(err)
+                }   
             }
         },
 

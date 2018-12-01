@@ -1,7 +1,7 @@
 <template>
     <div>
         <form method="POST" @submit="validateGrade" id="dados">            
-            <h3 class="title text-center mb-1" id="novoModalLabel">Nova Turma</h3>
+            <h3 class="title text-center mb-1" id="novoModalLabel">Editar Turma</h3>
 
             <div class="modal-body">
                 <div class="row">                                                        

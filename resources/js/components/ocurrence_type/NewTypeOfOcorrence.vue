@@ -14,7 +14,7 @@
                 </div>
                 <div class="row">
                     <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
-                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar"><br>
+                        <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar" :disabled="buttonDisable"><br>
                     </div>                      
                 </div>
                 <div class="row">
@@ -38,7 +38,8 @@ export default {
                 name: '',
             },
             errors: {},        
-            showAlert: false
+            showAlert: false,
+            buttonDisable: false
         }
     },
     methods: {
@@ -47,6 +48,7 @@ export default {
             this.errors = {};
 
             if(this.typeocurrence.name){
+                this.buttonDisable = true;
                 this.sendForm()
             }else{
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -62,6 +64,7 @@ export default {
             try{                              
                 const response = await axios.post("https://sidespe-api.herokuapp.com/ocurrencetypes", this.typeocurrence);                                           
                 if(response.status === 201){
+                    
                     this.showAlert = true;
                     setTimeout(() => {
                         window.location.href='/typesofocurrences';                        

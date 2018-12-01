@@ -34,7 +34,7 @@
 
                 <div class="row">
                     <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
-                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar"><br>
+                            <input type="submit" id="cadastrar" name="cadastrar" class="btn btn-modal col-md-2 text-center float-right mr-2" value="Cadastrar" :disabled="buttonDisable"><br>
                     </div>                      
                 </div>
                 <div class="row">
@@ -62,7 +62,8 @@ export default {
             },
             course: {},
             errors: {},
-            showAlert: false
+            showAlert: false,
+            buttonDisable: false
         }
     },
     methods:{
@@ -71,6 +72,7 @@ export default {
             this.errors = {};
 
             if(this.grade.name && this.grade.period && this.grade.shift){
+                this.buttonDisable = true;
                 this.sendForm()
             }else{
                 this.errors.button = 'Preencha os campos obrigatórios';

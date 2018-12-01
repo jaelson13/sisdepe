@@ -28,13 +28,13 @@ Route::get('/edit_user/{usercode}', function ($usercode) {
 
 //Type of Ocurrences
 Route::get('/typesofocurrences', function () {
-    return view('pages.ocurrence.typesofocurrences');
+    return view('pages.ocurrence_type.typesofocurrences');
 });
 Route::get('/new_type_ocurrence', function () {
-    return view('pages.ocurrence.new_type_ocurrence');
+    return view('pages.ocurrence_type.new_type_ocurrence');
 });
 Route::get('/edit_type_ocurrence/{typeocurrencecode}', function ($typeocurrencecode) {
-    return view('pages.ocurrence.edit_type_ocurrence')->with(compact('typeocurrencecode'));
+    return view('pages.ocurrence_type.edit_type_ocurrence')->with(compact('typeocurrencecode'));
 });
 
 //Courses
@@ -64,4 +64,25 @@ Route::get('/courses/{coursecode}/users', function ($coursecode) {
 });
 Route::get('/courses/{coursecode}/add_users', function ($coursecode) {
     return view('pages.course_users.course_add_users')->with(compact('coursecode'));
+});
+//Ocurrences
+Route::get('/ocurrences', function () {
+    return view('pages.ocurrence.ocurrences');
+});
+Route::get('/new_ocurrence', function () {
+    return view('pages.ocurrence.new_ocurrence');
+});
+Route::get('/edit_ocurrence/{ocurrencecode}', function ($ocurrencecode) {
+    return view('pages.ocurrence.edit_ocurrence')->with(compact('ocurrencecode'));
+});
+//Projects
+Route::get('/projects', function () {
+    return view('pages.project.projects');
+});
+Route::get('/new_project', function () {
+    return view('pages.project.new_project');
+});
+//Ocurrences Coordinator
+Route::get('/demandas', function () {
+    return view('pages.ocurrence_coordinator.ocurrences');
 });

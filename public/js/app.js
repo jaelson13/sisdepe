@@ -14339,18 +14339,32 @@ Vue.component('logout-component', __webpack_require__(106));
 Vue.component('users-component', __webpack_require__(51));
 Vue.component('newuser-component', __webpack_require__(57));
 Vue.component('edituser-component', __webpack_require__(60));
+//Type of Ocurrence
 Vue.component('typeofocurrence-component', __webpack_require__(63));
 Vue.component('newtypeofocorrence-component', __webpack_require__(68));
 Vue.component('edittypeofocorrence-component', __webpack_require__(71));
+//Courses
 Vue.component('courses-component', __webpack_require__(74));
 Vue.component('newcourse-component', __webpack_require__(79));
 Vue.component('editcourse-component', __webpack_require__(82));
+//Grades
 Vue.component('grades-component', __webpack_require__(85));
 Vue.component('newgrade-component', __webpack_require__(90));
 Vue.component('editgrade-component', __webpack_require__(93));
+//Course Users
 Vue.component('courseusers-component', __webpack_require__(96));
 Vue.component('courseaddusers-component', __webpack_require__(99));
+//Sidebar
 Vue.component('sidebar-component', __webpack_require__(114));
+//Ocurrences
+Vue.component('ocurrences-component', __webpack_require__(119));
+Vue.component('newocurrence-component', __webpack_require__(124));
+Vue.component('editocurrence-component', __webpack_require__(135));
+//Projects
+Vue.component('projects-component', __webpack_require__(127));
+Vue.component('newproject-component', __webpack_require__(132));
+//Ocurrences Coordinator
+Vue.component('ocurrencescoordinator-component', __webpack_require__(138));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -14403,15 +14417,15 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
  * all outgoing HTTP requests automatically have it attached. This is just
  * a simple convenience so we don't have to attach every token manually.
  */
-
-var token = document.head.querySelector('meta[name="csrf-token"]');
+/*
+let token = document.head.querySelector('meta[name="csrf-token"]');
 
 if (token) {
-  window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
 } else {
-  console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
 }
-
+*/
 /**
  * Echo exposes an expressive API for subscribing to channels and listening
  * for events that are broadcast by Laravel. Echo and event broadcasting
@@ -49692,7 +49706,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 active: true
             },
             errors: {},
-            showAlert: false
+            showAlert: false,
+            buttonDisable: false
         };
     },
 
@@ -49702,6 +49717,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.errors = {};
 
             if (this.user.name && this.user.login && this.user.email && this.user.password && this.user.type) {
+                this.buttonDisable = true;
                 this.sendForm();
             } else {
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -50002,7 +50018,29 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(5),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-md-9 mx-auto",
+              staticStyle: { "margin-bottom": "10px" }
+            },
+            [
+              _c("input", {
+                staticClass:
+                  "btn btn-modal col-md-2 text-center float-right mr-2",
+                attrs: {
+                  type: "submit",
+                  id: "cadastrar",
+                  name: "cadastrar",
+                  value: "Cadastrar",
+                  disabled: _vm.buttonDisable
+                }
+              }),
+              _c("br")
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
@@ -50039,7 +50077,7 @@ var render = function() {
           [
             _c("span", { attrs: { "data-notify": "title" } }),
             _vm._v(" "),
-            _vm._m(6)
+            _vm._m(5)
           ]
         )
       : _vm._e()
@@ -50115,7 +50153,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "Tipo" } }, [
-      _vm._v("Curso"),
+      _vm._v("Tipo de Usuário"),
       _c(
         "span",
         {
@@ -50123,32 +50161,6 @@ var staticRenderFns = [
           attrs: { title: "Campo obrigatório" }
         },
         [_vm._v("*")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col-md-9 mx-auto",
-          staticStyle: { "margin-bottom": "10px" }
-        },
-        [
-          _c("input", {
-            staticClass: "btn btn-modal col-md-2 text-center float-right mr-2",
-            attrs: {
-              type: "submit",
-              id: "cadastrar",
-              name: "cadastrar",
-              value: "Cadastrar"
-            }
-          }),
-          _c("br")
-        ]
       )
     ])
   },
@@ -51251,7 +51263,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                 name: ''
             },
             errors: {},
-            showAlert: false
+            showAlert: false,
+            buttonDisable: false
         };
     },
 
@@ -51261,6 +51274,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.errors = {};
 
             if (this.typeocurrence.name) {
+                this.buttonDisable = true;
                 this.sendForm();
             } else {
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -51285,6 +51299,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 response = _context.sent;
 
                                 if (response.status === 201) {
+
                                     this.showAlert = true;
                                     setTimeout(function () {
                                         window.location.href = '/typesofocurrences';
@@ -51377,7 +51392,29 @@ var render = function() {
           ])
         ]),
         _vm._v(" "),
-        _vm._m(1),
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            {
+              staticClass: "col-md-9 mx-auto",
+              staticStyle: { "margin-bottom": "10px" }
+            },
+            [
+              _c("input", {
+                staticClass:
+                  "btn btn-modal col-md-2 text-center float-right mr-2",
+                attrs: {
+                  type: "submit",
+                  id: "cadastrar",
+                  name: "cadastrar",
+                  value: "Cadastrar",
+                  disabled: _vm.buttonDisable
+                }
+              }),
+              _c("br")
+            ]
+          )
+        ]),
         _vm._v(" "),
         _c("div", { staticClass: "row" }, [
           _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
@@ -51414,7 +51451,7 @@ var render = function() {
           [
             _c("span", { attrs: { "data-notify": "title" } }),
             _vm._v(" "),
-            _vm._m(2)
+            _vm._m(1)
           ]
         )
       : _vm._e()
@@ -51434,32 +51471,6 @@ var staticRenderFns = [
           attrs: { title: "Campo obrigatório" }
         },
         [_vm._v("*")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col-md-9 mx-auto",
-          staticStyle: { "margin-bottom": "10px" }
-        },
-        [
-          _c("input", {
-            staticClass: "btn btn-modal col-md-2 text-center float-right mr-2",
-            attrs: {
-              type: "submit",
-              id: "cadastrar",
-              name: "cadastrar",
-              value: "Cadastrar"
-            }
-          }),
-          _c("br")
-        ]
       )
     ])
   },
@@ -52364,7 +52375,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             errors: {},
             showAlert: false,
             showAlertEmpity: false,
-            coordinators: {}
+            coordinators: {},
+            buttonDisable: false
 
         };
     },
@@ -52375,6 +52387,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.errors = {};
 
             if (this.course.name && this.course.description && this.coordinator) {
+                this.buttonDisable = true;
                 this.sendForm();
             } else {
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -52645,7 +52658,29 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-9 mx-auto",
+                staticStyle: { "margin-bottom": "10px" }
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "btn btn-modal col-md-2 text-center float-right mr-2",
+                  attrs: {
+                    type: "submit",
+                    id: "cadastrar",
+                    name: "cadastrar",
+                    value: "Cadastrar",
+                    disabled: _vm.buttonDisable
+                  }
+                }),
+                _c("br")
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
@@ -52683,7 +52718,7 @@ var render = function() {
           [
             _c("span", { attrs: { "data-notify": "title" } }),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ]
         )
       : _vm._e(),
@@ -52711,7 +52746,7 @@ var render = function() {
           [
             _c("span", { attrs: { "data-notify": "title" } }),
             _vm._v(" "),
-            _vm._m(5)
+            _vm._m(4)
           ]
         )
       : _vm._e()
@@ -52763,32 +52798,6 @@ var staticRenderFns = [
           attrs: { title: "Campo obrigatório" }
         },
         [_vm._v("*")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col-md-9 mx-auto",
-          staticStyle: { "margin-bottom": "10px" }
-        },
-        [
-          _c("input", {
-            staticClass: "btn btn-modal col-md-2 text-center float-right mr-2",
-            attrs: {
-              type: "submit",
-              id: "cadastrar",
-              name: "cadastrar",
-              value: "Cadastrar"
-            }
-          }),
-          _c("br")
-        ]
       )
     ])
   },
@@ -53062,7 +53071,7 @@ var render = function() {
             staticClass: "title text-center mb-1",
             attrs: { id: "novoModalLabel" }
           },
-          [_vm._v("Novo Curso")]
+          [_vm._v("Editar Curso")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "modal-body" }, [
@@ -53754,7 +53763,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             },
             course: {},
             errors: {},
-            showAlert: false
+            showAlert: false,
+            buttonDisable: false
         };
     },
 
@@ -53764,6 +53774,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.errors = {};
 
             if (this.grade.name && this.grade.period && this.grade.shift) {
+                this.buttonDisable = true;
                 this.sendForm();
             } else {
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -53995,7 +54006,29 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _vm._m(3),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-9 mx-auto",
+                staticStyle: { "margin-bottom": "10px" }
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "btn btn-modal col-md-2 text-center float-right mr-2",
+                  attrs: {
+                    type: "submit",
+                    id: "cadastrar",
+                    name: "cadastrar",
+                    value: "Cadastrar",
+                    disabled: _vm.buttonDisable
+                  }
+                }),
+                _c("br")
+              ]
+            )
+          ]),
           _vm._v(" "),
           _c("div", { staticClass: "row" }, [
             _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
@@ -54033,7 +54066,7 @@ var render = function() {
           [
             _c("span", { attrs: { "data-notify": "title" } }),
             _vm._v(" "),
-            _vm._m(4)
+            _vm._m(3)
           ]
         )
       : _vm._e()
@@ -54085,32 +54118,6 @@ var staticRenderFns = [
           attrs: { title: "Campo obrigatório" }
         },
         [_vm._v("*")]
-      )
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "row" }, [
-      _c(
-        "div",
-        {
-          staticClass: "col-md-9 mx-auto",
-          staticStyle: { "margin-bottom": "10px" }
-        },
-        [
-          _c("input", {
-            staticClass: "btn btn-modal col-md-2 text-center float-right mr-2",
-            attrs: {
-              type: "submit",
-              id: "cadastrar",
-              name: "cadastrar",
-              value: "Cadastrar"
-            }
-          }),
-          _c("br")
-        ]
       )
     ])
   },
@@ -54397,7 +54404,7 @@ var render = function() {
             staticClass: "title text-center mb-1",
             attrs: { id: "novoModalLabel" }
           },
-          [_vm._v("Nova Turma")]
+          [_vm._v("Editar Turma")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "modal-body" }, [
@@ -55128,7 +55135,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             checkdados: [],
             codecourse: null,
             showAlert: false,
-            usersJaAdd: []
+            usersJaAdd: [],
+            buttonDisable: false
         };
     },
 
@@ -55157,15 +55165,17 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 _context.prev = 0;
+
+                                this.buttonDisable = true;
                                 users = [];
 
                                 this.checkdados.forEach(function (userCode) {
                                     return users.push({ code: userCode });
                                 });
-                                _context.next = 5;
+                                _context.next = 6;
                                 return axios.put('https://sidespe-api.herokuapp.com/courses/' + this.codecourse + '/teachers', users);
 
-                            case 5:
+                            case 6:
                                 response = _context.sent;
 
                                 if (response.status === 201) {
@@ -55174,21 +55184,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                         window.location.href = 'http://127.0.0.1:8000/courses/' + _this2.codecourse + '/users';
                                     }, 3000);
                                 }
-                                _context.next = 12;
+                                _context.next = 13;
                                 break;
 
-                            case 9:
-                                _context.prev = 9;
+                            case 10:
+                                _context.prev = 10;
                                 _context.t0 = _context['catch'](0);
 
                                 console.log(_context.t0);
 
-                            case 12:
+                            case 13:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[0, 9]]);
+                }, _callee, this, [[0, 10]]);
             }));
 
             function addUsers() {
@@ -55277,7 +55287,10 @@ var render = function() {
             "a",
             {
               staticClass: "btn btn-success float-right",
-              attrs: { href: "", disabled: _vm.checkdados.length < 1 },
+              attrs: {
+                href: "",
+                disabled: _vm.checkdados.length < 1 || _vm.buttonDisable
+              },
               on: {
                 click: function($event) {
                   $event.preventDefault()
@@ -55720,7 +55733,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -55731,6 +55744,26 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -55829,7 +55862,22 @@ var render = function() {
           }
         ]
       },
-      [_vm._m(3)]
+      [_vm._m(3), _vm._v(" "), _vm._m(4)]
+    ),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        directives: [
+          {
+            name: "show",
+            rawName: "v-show",
+            value: _vm.isTeacher,
+            expression: "isTeacher"
+          }
+        ]
+      },
+      [_vm._m(5), _vm._v(" "), _vm._m(6)]
     )
   ])
 }
@@ -55881,6 +55929,42 @@ var staticRenderFns = [
         _c("p", [_vm._v("Cursos")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/demandas" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Demandas")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/ocurrences" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Ocorrências")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/projects" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Projetos")])
+      ])
+    ])
   }
 ]
 render._withStripped = true
@@ -55889,6 +55973,3189 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-65bb863c", module.exports)
+  }
+}
+
+/***/ }),
+/* 119 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(120)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(122)
+/* template */
+var __vue_template__ = __webpack_require__(123)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ocurrence/Ocurrences.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4aeb84f5", Component.options)
+  } else {
+    hotAPI.reload("data-v-4aeb84f5", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 120 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(121);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("407cb846", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aeb84f5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ocurrences.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-4aeb84f5\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ocurrences.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 122 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ocurrences: []
+        };
+    },
+
+    methods: {},
+    mounted: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.prev = 0;
+                            _context.next = 3;
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrences');
+
+                        case 3:
+                            response = _context.sent;
+
+                            this.ocurrences = response.data;
+                            _context.next = 10;
+                            break;
+
+                        case 7:
+                            _context.prev = 7;
+                            _context.t0 = _context['catch'](0);
+
+                            console.log(_context.t0);
+
+                        case 10:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this, [[0, 7]]);
+        }));
+
+        function mounted() {
+            return _ref.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 123 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c(
+        "table",
+        {
+          staticClass: "table table-striped",
+          staticStyle: { "margin-bottom": "60px" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.ocurrences, function(ocurrence) {
+                return _c("tr", { key: ocurrence.code }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.description) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.type.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          ocurrence.createdAt
+                            .split("-")
+                            .reverse()
+                            .join("-")
+                        ) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "float-right mr-3" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        staticStyle: { "padding-left": "10px" },
+                        attrs: { role: "menu" }
+                      },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/edit_ocurrence/" + ocurrence.code
+                              }
+                            },
+                            [_vm._v("Editar")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2, true)
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm.ocurrences.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "5" } }, [
+                      _vm._v("Nenhuma ocorrência foi encontrada.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "td" }, [
+          _vm._v("\n                    Descrição\n                ")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Tipo\n                ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Data\n                ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown ",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [
+        _c("i", { staticClass: "material-icons" }, [
+          _vm._v(
+            "\n                            more_horiz\n                        "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4aeb84f5", module.exports)
+  }
+}
+
+/***/ }),
+/* 124 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(125)
+/* template */
+var __vue_template__ = __webpack_require__(126)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ocurrence/NewOcurrence.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-35fca7cc", Component.options)
+  } else {
+    hotAPI.reload("data-v-35fca7cc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 125 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ocurrence: {
+                description: '',
+                createdAt: '',
+                type: {
+                    code: ''
+                },
+                user: {
+                    code: ''
+                }
+            },
+            typesocurrences: {},
+            errors: {},
+            showAlert: false,
+            buttonDisable: false
+        };
+    },
+
+    methods: {
+        validateOcurrence: function validateOcurrence(e) {
+            e.preventDefault();
+            this.errors = {};
+
+            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.createdAt) {
+                this.buttonDisable = true;
+                this.sendForm();
+            } else {
+                this.errors.button = 'Preencha os campos obrigatórios';
+            }
+
+            if (!this.ocurrence.description) {
+                this.errors.description = 'Este campo é obrigatório';
+            }
+            if (!this.ocurrence.type.code) {
+                this.errors.typeocurrence = 'Este campo é obrigatório';
+            }
+            if (!this.ocurrence.createdAt) {
+                this.errors.data = 'Este campo é obrigatório';
+            }
+        },
+        sendForm: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var user, response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                user = JSON.parse(localStorage.getItem('user'));
+
+                                this.ocurrence.user.code = user.code;
+                                _context.next = 5;
+                                return axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);
+
+                            case 5:
+                                response = _context.sent;
+
+                                if (response.status === 201) {
+                                    this.showAlert = true;
+                                    setTimeout(function () {
+                                        window.location.href = '/ocurrences';
+                                    }, 3000);
+                                }
+                                _context.next = 12;
+                                break;
+
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](0);
+
+                                console.log(_context.t0);
+
+                            case 12:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 9]]);
+            }));
+
+            function sendForm() {
+                return _ref.apply(this, arguments);
+            }
+
+            return sendForm;
+        }()
+    },
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+                            _context2.next = 3;
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+
+                        case 3:
+                            response = _context2.sent;
+
+                            this.typesocurrences = response.data;
+                            _context2.next = 10;
+                            break;
+
+                        case 7:
+                            _context2.prev = 7;
+                            _context2.t0 = _context2['catch'](0);
+
+                            console.log(_context2.t0);
+
+                        case 10:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[0, 7]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 126 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { method: "POST", id: "dados" },
+        on: { submit: _vm.validateOcurrence }
+      },
+      [
+        _c(
+          "h3",
+          {
+            staticClass: "title text-center mb-1",
+            attrs: { id: "novoModalLabel" }
+          },
+          [_vm._v("Novo Tipo de Ocorrência")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "modal-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.ocurrence.description,
+                    expression: "ocurrence.description"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "text", placeholder: "Tipo de ocorrência..." },
+                domProps: { value: _vm.ocurrence.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.ocurrence, "description", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.description
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.description))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-3" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ocurrence.type.code,
+                      expression: "ocurrence.type.code"
+                    }
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.ocurrence.type,
+                        "code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o tipo...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.typesocurrences, function(typeocurrence) {
+                    return _c(
+                      "option",
+                      {
+                        key: typeocurrence.code,
+                        domProps: { value: typeocurrence.code }
+                      },
+                      [_vm._v(_vm._s(typeocurrence.name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.errors.typeocurrence
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.typeocurrence))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.ocurrence.createdAt,
+                    expression: "ocurrence.createdAt"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "date", placeholder: "Selecione a data..." },
+                domProps: { value: _vm.ocurrence.createdAt },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.ocurrence, "createdAt", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.data
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.data))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-9 mx-auto",
+                staticStyle: { "margin-bottom": "10px" }
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "btn btn-modal col-md-2 text-center float-right mr-2",
+                  attrs: {
+                    type: "submit",
+                    id: "cadastrar",
+                    name: "cadastrar",
+                    value: "Cadastrar",
+                    disabled: _vm.buttonDisable
+                  }
+                }),
+                _c("br")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
+              _vm.errors.button
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.button))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm.showAlert
+      ? _c(
+          "div",
+          {
+            staticClass: "col-4 mx-auto alert alert-success",
+            staticStyle: {
+              display: "inline-block",
+              margin: "0px auto",
+              position: "fixed",
+              transition: "all 0.5s ease-in-out 0s",
+              "z-index": "1060",
+              top: "20px",
+              left: "0px",
+              right: "0px"
+            },
+            attrs: {
+              "data-notify": "container",
+              "data-notify-position": "top-center"
+            }
+          },
+          [
+            _c("span", { attrs: { "data-notify": "title" } }),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Descrição" } }, [
+      _vm._v("Descrição"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Tipo" } }, [
+      _vm._v("Tipo"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Data" } }, [
+      _vm._v("Data"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "data-notify": "message" } }, [
+      _vm._v("Ocorrência cadastrada com sucesso, voltando para "),
+      _c("b", [_vm._v("Ocorrências")]),
+      _vm._v(" em 3s")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-35fca7cc", module.exports)
+  }
+}
+
+/***/ }),
+/* 127 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(128)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(130)
+/* template */
+var __vue_template__ = __webpack_require__(131)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/project/Projects.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-314115ca", Component.options)
+  } else {
+    hotAPI.reload("data-v-314115ca", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(129);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("85a3b630", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-314115ca\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Projects.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-314115ca\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Projects.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 130 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            projects: []
+        };
+    },
+
+    methods: {},
+    mounted: function () {
+        var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+            var user, response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                while (1) {
+                    switch (_context.prev = _context.next) {
+                        case 0:
+                            _context.prev = 0;
+                            user = JSON.parse(localStorage.getItem('user'));
+                            _context.next = 4;
+                            return axios.get('https://sidespe-api.herokuapp.com/projects/' + user.code + '/teachers/');
+
+                        case 4:
+                            response = _context.sent;
+
+                            this.ocurrences = response.data;
+                            _context.next = 11;
+                            break;
+
+                        case 8:
+                            _context.prev = 8;
+                            _context.t0 = _context['catch'](0);
+
+                            console.log(_context.t0);
+
+                        case 11:
+                        case 'end':
+                            return _context.stop();
+                    }
+                }
+            }, _callee, this, [[0, 8]]);
+        }));
+
+        function mounted() {
+            return _ref.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c(
+        "table",
+        {
+          staticClass: "table table-striped",
+          staticStyle: { "margin-bottom": "60px" }
+        },
+        [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.projects, function(project) {
+                return _c("tr", { key: project.code }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(project.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(project.summary) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          project.requestedDate
+                            .split("-")
+                            .reverse()
+                            .join("-")
+                        ) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "float-right mr-3" }, [
+                    _vm._m(1, true),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        staticStyle: { "padding-left": "10px" },
+                        attrs: { role: "menu" }
+                      },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href:
+                                  "/edit_type_ocurrence/" + _vm.ocurrence.code
+                              }
+                            },
+                            [_vm._v("Editar")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(2, true)
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm.projects.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "5" } }, [
+                      _vm._v("Nenhum projeto foi encontrado.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "td" }, [
+          _vm._v("\n                    Nome\n                ")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Resumo\n                ")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                    Data do Projeto\n                ")
+        ])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown ",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [
+        _c("i", { staticClass: "material-icons" }, [
+          _vm._v(
+            "\n                            more_horiz\n                        "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-314115ca", module.exports)
+  }
+}
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(133)
+/* template */
+var __vue_template__ = __webpack_require__(134)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/project/NewProject.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e5ef478c", Component.options)
+  } else {
+    hotAPI.reload("data-v-e5ef478c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            project: {
+                name: '',
+                summary: '',
+                course: {
+                    code: ''
+                },
+                grade: {
+                    code: ''
+                },
+                requesting: {
+                    code: ''
+                },
+                requestedDate: '',
+                criterions: ''
+            },
+            courses: [],
+            grades: [],
+            file: '',
+            errors: {},
+            showAlert: false,
+            buttonDisable: false
+        };
+    },
+
+    methods: {
+        validateProject: function validateProject(e) {
+            e.preventDefault();
+            this.errors = {};
+
+            if (this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions) {
+                this.buttonDisable = true;
+                this.sendForm();
+            } else {
+                this.errors.button = 'Preencha os campos obrigatórios';
+            }
+
+            if (!this.project.name) {
+                this.errors.name = 'Este campo é obrigatório';
+            }
+            if (!this.project.summary) {
+                this.errors.summary = 'Este campo é obrigatório';
+            }
+            if (!this.project.course.code) {
+                this.errors.course = 'Este campo é obrigatório';
+            }
+            if (!this.project.grade.code) {
+                this.errors.grade = 'Este campo é obrigatório';
+            }
+            if (!this.project.requestedDate) {
+                this.errors.requestedDate = 'Este campo é obrigatório';
+            }
+            if (!this.project.criterions) {
+                this.errors.criterions = 'Este campo é obrigatório';
+            }
+        },
+        gradeUpdate: function gradeUpdate() {
+            var _this = this;
+
+            this.grades = [];
+            this.project.grade.code = '';
+            this.courses.forEach(function (course) {
+                if (course.code == _this.project.course.code) {
+                    course.grades.forEach(function (grade) {
+                        console.log(grade);
+                        _this.grades.push(grade);
+                    });
+                }
+            });
+        },
+        handleFileUpload: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var formData, response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                this.file = this.$refs.file.files[0];
+
+                                if (!(this.file.type != 'application/pdf' && this.file.type != 'application/msword' && this.file.type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
+                                    _context.next = 6;
+                                    break;
+                                }
+
+                                this.errors.criterions = '';
+                                this.errors.criterions = "Arquivo não adicionado ou suportado, obs: Só são aceitor arquivos pdf e word";
+                                _context.next = 19;
+                                break;
+
+                            case 6:
+                                this.errors.criterions = '';
+                                _context.prev = 7;
+                                formData = new FormData();
+
+                                formData.append('file', this.file);
+                                _context.next = 12;
+                                return axios.post('http://localhost:8000/upload', formData);
+
+                            case 12:
+                                response = _context.sent;
+
+                                console.log(response.data);
+                                _context.next = 19;
+                                break;
+
+                            case 16:
+                                _context.prev = 16;
+                                _context.t0 = _context['catch'](7);
+
+                                console.log(_context.t0);
+
+                            case 19:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[7, 16]]);
+            }));
+
+            function handleFileUpload() {
+                return _ref.apply(this, arguments);
+            }
+
+            return handleFileUpload;
+        }(),
+        sendForm: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+                var user, response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+                                user = JSON.parse(localStorage.getItem('user'));
+
+                                this.ocurrence.user.code = user.code;
+                                _context2.next = 5;
+                                return axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);
+
+                            case 5:
+                                response = _context2.sent;
+
+                                if (response.status === 201) {
+                                    this.showAlert = true;
+                                    setTimeout(function () {
+                                        window.location.href = '/ocurrences';
+                                    }, 3000);
+                                }
+                                _context2.next = 12;
+                                break;
+
+                            case 9:
+                                _context2.prev = 9;
+                                _context2.t0 = _context2['catch'](0);
+
+                                console.log(_context2.t0);
+
+                            case 12:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[0, 9]]);
+            }));
+
+            function sendForm() {
+                return _ref2.apply(this, arguments);
+            }
+
+            return sendForm;
+        }()
+    },
+    mounted: function () {
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
+            var _this2 = this;
+
+            var localUser, response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
+                while (1) {
+                    switch (_context3.prev = _context3.next) {
+                        case 0:
+                            _context3.prev = 0;
+                            localUser = JSON.parse(localStorage.getItem('user'));
+                            _context3.next = 4;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses');
+
+                        case 4:
+                            response = _context3.sent;
+
+                            if (response.data) {
+                                response.data.forEach(function (course) {
+                                    if (course.users.findIndex(function (user) {
+                                        return user.code == localUser.code;
+                                    }) === 0) {
+                                        _this2.courses.push(course);
+                                    }
+                                });
+                            }
+                            _context3.next = 11;
+                            break;
+
+                        case 8:
+                            _context3.prev = 8;
+                            _context3.t0 = _context3['catch'](0);
+
+                            console.log(_context3.t0);
+
+                        case 11:
+                        case 'end':
+                            return _context3.stop();
+                    }
+                }
+            }, _callee3, this, [[0, 8]]);
+        }));
+
+        function mounted() {
+            return _ref3.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { method: "POST", id: "dados" },
+        on: { submit: _vm.validateProject }
+      },
+      [
+        _c(
+          "h3",
+          {
+            staticClass: "title text-center mb-1",
+            attrs: { id: "novoModalLabel" }
+          },
+          [_vm._v("Novo Projeto")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "modal-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.name,
+                    expression: "project.name"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "text", placeholder: "Tipo de ocorrência..." },
+                domProps: { value: _vm.project.name },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.project, "name", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.name
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.name))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c("textarea", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.summary,
+                    expression: "project.summary"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: {
+                  name: "descricao",
+                  placeholder: "Descrição...",
+                  id: "descricao",
+                  maxlength: "255"
+                },
+                domProps: { value: _vm.project.summary },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.project, "summary", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.summary
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.summary))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.project.course.code,
+                      expression: "project.course.code"
+                    }
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.project.course,
+                          "code",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      },
+                      _vm.gradeUpdate
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o tipo...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.courses, function(course) {
+                    return _c(
+                      "option",
+                      { key: course.code, domProps: { value: course.code } },
+                      [_vm._v(_vm._s(course.name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.errors.course
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.course))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(3),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.project.grade.code,
+                      expression: "project.grade.code"
+                    }
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.project.grade,
+                        "code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o tipo...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.grades, function(grade) {
+                    return _c(
+                      "option",
+                      { key: grade.code, domProps: { value: grade.code } },
+                      [_vm._v(_vm._s(grade.name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.errors.grade
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.grade))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(4),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.project.requestedDate,
+                    expression: "project.requestedDate"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "date", placeholder: "Selecione a data..." },
+                domProps: { value: _vm.project.requestedDate },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.project, "requestedDate", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.requestedDate
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.requestedDate))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(5),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "btn btn-sm btn-default mt-1 mr-2 text-white" },
+                [
+                  _vm._v("\n                            Selecione o anexo"),
+                  _c("input", {
+                    ref: "file",
+                    attrs: { type: "file" },
+                    on: { change: _vm.handleFileUpload }
+                  })
+                ]
+              ),
+              _c("label", [_vm._v(_vm._s(_vm.file.name))]),
+              _vm._v(" "),
+              _c("br"),
+              _vm._v(" "),
+              _vm.errors.criterions
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.criterions))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-9 mx-auto",
+                staticStyle: { "margin-bottom": "10px" }
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "btn btn-modal col-md-2 text-center float-right mr-2",
+                  attrs: {
+                    type: "submit",
+                    id: "cadastrar",
+                    name: "cadastrar",
+                    value: "Cadastrar",
+                    disabled: _vm.buttonDisable
+                  }
+                }),
+                _c("br")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
+              _vm.errors.button
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.button))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm.showAlert
+      ? _c(
+          "div",
+          {
+            staticClass: "col-4 mx-auto alert alert-success",
+            staticStyle: {
+              display: "inline-block",
+              margin: "0px auto",
+              position: "fixed",
+              transition: "all 0.5s ease-in-out 0s",
+              "z-index": "1060",
+              top: "20px",
+              left: "0px",
+              right: "0px"
+            },
+            attrs: {
+              "data-notify": "container",
+              "data-notify-position": "top-center"
+            }
+          },
+          [
+            _c("span", { attrs: { "data-notify": "title" } }),
+            _vm._v(" "),
+            _vm._m(6)
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Nome" } }, [
+      _vm._v("Nome"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Resumo" } }, [
+      _vm._v("Resumo"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Curso" } }, [
+      _vm._v("Curso"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Turma" } }, [
+      _vm._v("Turma"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Data" } }, [
+      _vm._v("Data"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Critérios" } }, [
+      _vm._v("Critérios"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "data-notify": "message" } }, [
+      _vm._v("Ocorrência cadastrada com sucesso, voltando para "),
+      _c("b", [_vm._v("Ocorrências")]),
+      _vm._v(" em 3s")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e5ef478c", module.exports)
+  }
+}
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(136)
+/* template */
+var __vue_template__ = __webpack_require__(137)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ocurrence/EditOcurrence.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-769bb704", Component.options)
+  } else {
+    hotAPI.reload("data-v-769bb704", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 136 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['ocurrencecode'],
+    data: function data() {
+        return {
+            ocurrence: {
+                code: null,
+                description: '',
+                createdAt: '',
+                type: {
+                    code: ''
+                },
+                user: {
+                    code: ''
+                }
+            },
+            typesocurrences: {},
+            errors: {},
+            showAlert: false,
+            buttonDisable: false
+        };
+    },
+
+    methods: {
+        validateOcurrence: function validateOcurrence(e) {
+            e.preventDefault();
+            this.errors = {};
+
+            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.createdAt) {
+                this.buttonDisable = true;
+                this.sendForm();
+            } else {
+                this.errors.button = 'Preencha os campos obrigatórios';
+            }
+
+            if (!this.ocurrence.description) {
+                this.errors.description = 'Este campo é obrigatório';
+            }
+            if (!this.ocurrence.type.code) {
+                this.errors.typeocurrence = 'Este campo é obrigatório';
+            }
+            if (!this.ocurrence.createdAt) {
+                this.errors.data = 'Este campo é obrigatório';
+            }
+        },
+        sendForm: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);
+
+                            case 3:
+                                response = _context.sent;
+
+                                if (response.status === 201) {
+                                    this.showAlert = true;
+                                    setTimeout(function () {
+                                        window.location.href = '/ocurrences';
+                                    }, 3000);
+                                }
+                                _context.next = 10;
+                                break;
+
+                            case 7:
+                                _context.prev = 7;
+                                _context.t0 = _context['catch'](0);
+
+                                console.log(_context.t0);
+
+                            case 10:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 7]]);
+            }));
+
+            function sendForm() {
+                return _ref.apply(this, arguments);
+            }
+
+            return sendForm;
+        }()
+    },
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+
+                            this.ocurrence.code = JSON.parse(this.ocurrencecode);
+                            //const response = await axios.get(`https://sidespe-api.herokuapp.com/ocurrence/${this.ocurrence.code}`);   
+                            //this.ocurrence = {"code":1,"description":"Aluno fez muita raiva","createdAt":"2018-12-01","user":{"code":1},"type":{"code":1}}
+                            _context2.next = 4;
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+
+                        case 4:
+                            response = _context2.sent;
+
+                            this.typesocurrences = response.data;
+                            _context2.next = 11;
+                            break;
+
+                        case 8:
+                            _context2.prev = 8;
+                            _context2.t0 = _context2['catch'](0);
+
+                            console.log(_context2.t0);
+
+                        case 11:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[0, 8]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 137 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c(
+      "form",
+      {
+        attrs: { method: "POST", id: "dados" },
+        on: { submit: _vm.validateOcurrence }
+      },
+      [
+        _c(
+          "h3",
+          {
+            staticClass: "title text-center mb-1",
+            attrs: { id: "novoModalLabel" }
+          },
+          [_vm._v("Editar Ocorrência")]
+        ),
+        _vm._v(" "),
+        _c("div", { staticClass: "modal-body" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.ocurrence.description,
+                    expression: "ocurrence.description"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "text", placeholder: "Tipo de ocorrência..." },
+                domProps: { value: _vm.ocurrence.description },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.ocurrence, "description", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.description
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.description))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(1),
+              _vm._v(" "),
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ocurrence.type.code,
+                      expression: "ocurrence.type.code"
+                    }
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.ocurrence.type,
+                        "code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o tipo...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.typesocurrences, function(typeocurrence) {
+                    return _c(
+                      "option",
+                      {
+                        key: typeocurrence.code,
+                        domProps: { value: typeocurrence.code }
+                      },
+                      [_vm._v(_vm._s(typeocurrence.name))]
+                    )
+                  })
+                ],
+                2
+              ),
+              _vm._v(" "),
+              _vm.errors.typeocurrence
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.typeocurrence))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _vm._m(2),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.ocurrence.createdAt,
+                    expression: "ocurrence.createdAt"
+                  }
+                ],
+                staticClass: "form-control borda-input",
+                attrs: { type: "date", placeholder: "Selecione a data..." },
+                domProps: { value: _vm.ocurrence.createdAt },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.$set(_vm.ocurrence, "createdAt", $event.target.value)
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _vm.errors.data
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.data))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c(
+              "div",
+              {
+                staticClass: "col-md-9 mx-auto",
+                staticStyle: { "margin-bottom": "10px" }
+              },
+              [
+                _c("input", {
+                  staticClass:
+                    "btn btn-modal col-md-2 text-center float-right mr-2",
+                  attrs: {
+                    type: "submit",
+                    id: "cadastrar",
+                    name: "cadastrar",
+                    value: "Cadastrar",
+                    disabled: _vm.buttonDisable
+                  }
+                }),
+                _c("br")
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-9 mx-auto text-center" }, [
+              _vm.errors.button
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.button))
+                  ])
+                : _vm._e()
+            ])
+          ])
+        ])
+      ]
+    ),
+    _vm._v(" "),
+    _vm.showAlert
+      ? _c(
+          "div",
+          {
+            staticClass: "col-4 mx-auto alert alert-success",
+            staticStyle: {
+              display: "inline-block",
+              margin: "0px auto",
+              position: "fixed",
+              transition: "all 0.5s ease-in-out 0s",
+              "z-index": "1060",
+              top: "20px",
+              left: "0px",
+              right: "0px"
+            },
+            attrs: {
+              "data-notify": "container",
+              "data-notify-position": "top-center"
+            }
+          },
+          [
+            _c("span", { attrs: { "data-notify": "title" } }),
+            _vm._v(" "),
+            _vm._m(3)
+          ]
+        )
+      : _vm._e()
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Descrição" } }, [
+      _vm._v("Descrição"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Tipo" } }, [
+      _vm._v("Tipo"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Data" } }, [
+      _vm._v("Data"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "data-notify": "message" } }, [
+      _vm._v("Ocorrência atualizada com sucesso, voltando para "),
+      _c("b", [_vm._v("Ocorrências")]),
+      _vm._v(" em 3s")
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-769bb704", module.exports)
+  }
+}
+
+/***/ }),
+/* 138 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(139)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(141)
+/* template */
+var __vue_template__ = __webpack_require__(142)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/ocurrence_coordinator/Ocurrences.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-407408e4", Component.options)
+  } else {
+    hotAPI.reload("data-v-407408e4", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(140);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(5)("511b42f1", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-407408e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ocurrences.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-407408e4\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Ocurrences.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(4)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 141 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ocurrences: [],
+            courses: [],
+            coursesUser: [],
+            courseSelect: ''
+        };
+    },
+
+    methods: {
+        filtrarDados: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+
+                                console.log(this.courseSelect);
+                                _context.next = 4;
+                                return axios.get('https://sidespe-api.herokuapp.com/ocurrence/1/course');
+
+                            case 4:
+                                response = _context.sent;
+
+                                this.ocurrences = response.data.sort(function (a, b) {
+                                    return new Date(a.createdAt) - new Date(b.createdAt);
+                                });;
+                                _context.next = 11;
+                                break;
+
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](0);
+
+                            case 11:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 9]]);
+            }));
+
+            function filtrarDados() {
+                return _ref.apply(this, arguments);
+            }
+
+            return filtrarDados;
+        }()
+    },
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var _this = this;
+
+            var localUser, response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+                            localUser = JSON.parse(localStorage.getItem('user'));
+                            _context2.next = 4;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses');
+
+                        case 4:
+                            response = _context2.sent;
+
+                            this.courses = [{
+                                "code": 1,
+                                "name": "ADS",
+                                "description": "Análise e Desenvolvimento",
+                                "grades": [{
+                                    "name": " TURMA F106",
+                                    "period": "6",
+                                    "shift": "DAY_SHIFT"
+                                }, {
+                                    "name": " TURMA F105",
+                                    "period": "5",
+                                    "shift": "NIGHT_SHIFT"
+                                }],
+                                "users": [{
+                                    "code": 2
+                                }, {
+                                    "code": 1
+                                }]
+                            }, {
+                                "code": 2,
+                                "name": "ADS",
+                                "description": "Análise e Desenvolvimento",
+                                "grades": [{
+                                    "name": " TURMA F106",
+                                    "period": "6",
+                                    "shift": "DAY_SHIFT"
+                                }, {
+                                    "name": " TURMA F105",
+                                    "period": "5",
+                                    "shift": "NIGHT_SHIFT"
+                                }],
+                                "users": [{
+                                    "code": 1
+                                }, {
+                                    "code": 4
+                                }]
+                            }, {
+                                "code": 4,
+                                "name": "dsfdsdADS",
+                                "description": "Análise e Desenvolvimento",
+                                "grades": [{
+                                    "name": " TURMA F106",
+                                    "period": "6",
+                                    "shift": "DAY_SHIFT"
+                                }, {
+                                    "name": " TURMA F105",
+                                    "period": "5",
+                                    "shift": "NIGHT_SHIFT"
+                                }],
+                                "users": [{
+                                    "code": 5
+                                }, {
+                                    "code": 4
+                                }]
+                            }, {
+                                "code": 7,
+                                "name": "hyhyjyjyADS",
+                                "description": "Análise e Desenvolvimento",
+                                "grades": [{
+                                    "name": " TURMA F106",
+                                    "period": "6",
+                                    "shift": "DAY_SHIFT"
+                                }, {
+                                    "name": " TURMA F105",
+                                    "period": "5",
+                                    "shift": "NIGHT_SHIFT"
+                                }],
+                                "users": [{
+                                    "code": 1
+                                }, {
+                                    "code": 4
+                                }]
+                            }];
+                            this.courses.forEach(function (course) {
+                                course.users.forEach(function (user) {
+                                    if (user.code == localUser.code) {
+                                        _this.coursesUser.push(course);
+                                    }
+                                });
+                            });
+                            _context2.next = 12;
+                            break;
+
+                        case 9:
+                            _context2.prev = 9;
+                            _context2.t0 = _context2['catch'](0);
+
+                            console.log(_context2.t0);
+
+                        case 12:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[0, 9]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 142 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.courseSelect,
+                  expression: "courseSelect"
+                }
+              ],
+              staticClass: "form-control borda-input",
+              attrs: { name: "tipo" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.courseSelect = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.filtrarDados
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Selecione o curso...")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.coursesUser, function(course) {
+                return _c(
+                  "option",
+                  { key: course.code, domProps: { value: course.code } },
+                  [_vm._v(_vm._s(course.name))]
+                )
+              })
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-striped",
+          staticStyle: { "margin-bottom": "60px" }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.ocurrences, function(ocurrence) {
+                return _c("tr", { key: ocurrence.code }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.description) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.type.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          ocurrence.createdAt
+                            .split("-")
+                            .reverse()
+                            .join("-")
+                        ) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", { staticClass: "float-right mr-3" }, [
+                    _vm._m(2, true),
+                    _vm._v(" "),
+                    _c(
+                      "ul",
+                      {
+                        staticClass: "dropdown-menu",
+                        staticStyle: { "padding-left": "10px" },
+                        attrs: { role: "menu" }
+                      },
+                      [
+                        _c("li", [
+                          _c(
+                            "a",
+                            {
+                              attrs: {
+                                href: "/edit_ocurrence/" + ocurrence.code
+                              }
+                            },
+                            [_vm._v("Editar")]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _vm._m(3, true)
+                      ]
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm.ocurrences.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "5" } }, [
+                      _vm._v("Nenhuma ocorrência foi encontrada.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Selecione o curso" } }, [
+      _vm._v("Selecione o curso"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "td" }, [
+          _vm._v("\n                    Descrição\n                ")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Tipo\n                ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Data\n                ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass: "dropdown ",
+        attrs: { href: "#", "data-toggle": "dropdown" }
+      },
+      [
+        _c("i", { staticClass: "material-icons" }, [
+          _vm._v(
+            "\n                            more_horiz\n                        "
+          )
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-407408e4", module.exports)
   }
 }
 

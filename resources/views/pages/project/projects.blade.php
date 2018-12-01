@@ -1,23 +1,23 @@
 @extends('layouts.app')
 
-@section('musuario','active')
+@section('mtipodedemandas','active')
 
 @section('conteudo')
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
-            <h5 class="title pt-2">Usuarios - Turma</h5>
+            <h5 class="title pt-2">Ocorrências</h5>
         </div>
 
         <div class="col-md-8 pr-5">
-            <a class="btn btn-success float-right" href="/courses/{{$coursecode}}/add_users">Adicionar Usuário</a>
+            <a class="btn btn-success float-right" href="/new_project">Novo Projeto</a>
         </div>
     </div>
 </div>
 <div class="card-body">
     <div class="row">
         <div class="col-12 m-auto">
-            <courseusers-component coursecode="{{json_encode($coursecode)}}"></courseusers-component>
+            <projects-component></projects-component>
         </div>
     </div>
 </div>
