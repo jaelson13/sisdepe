@@ -49392,7 +49392,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 3:
                             response = _context3.sent;
 
-                            this.users = response.data;
+                            this.users = response.data.filter(function (user) {
+                                return user.type != 'ADMINISTRATOR';
+                            });
                             _context3.next = 10;
                             break;
 
@@ -56048,7 +56050,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.isCoordinator = true;
             this.isTeacher = false;
         }
-        if (__WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */].type === 'ADMIN') {
+        if (__WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */].type === 'ADMINISTRATOR') {
             this.isAdmin = true;
             this.isCoordinator = false;
             this.isTeacher = false;

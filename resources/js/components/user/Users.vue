@@ -120,7 +120,7 @@ export default {
     async mounted(){           
             try{                               
                 const response = await axios.get('https://sidespe-api.herokuapp.com/users/');   
-                this.users = response.data;
+                this.users = response.data.filter(user => user.type != 'ADMINISTRATOR');
             }catch(err){
                 console.log(err);
             }            

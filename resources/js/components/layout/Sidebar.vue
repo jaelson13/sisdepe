@@ -67,7 +67,7 @@ export default {
             this.isCoordinator = true;
             this.isTeacher = false;
         }
-        if(localUser.type === 'ADMIN'){
+        if(localUser.type === 'ADMINISTRATOR'){
             this.isAdmin = true;
             this.isCoordinator = false;
             this.isTeacher = false;
