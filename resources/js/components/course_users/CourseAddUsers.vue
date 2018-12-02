@@ -110,7 +110,7 @@
                     if(response.status === 201){
                         this.showAlert = true;
                         setTimeout(() => {
-                            window.location.href=`http://127.0.0.1:8000/courses/${this.codecourse}/users`;                        
+                            window.location.href=`/courses/${this.codecourse}/users`;                        
                         }, 3000); 
                     }
                 }catch(err){

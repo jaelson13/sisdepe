@@ -10,8 +10,7 @@
                             <input v-model="ocurrence.description" type="text" class="form-control borda-input" placeholder="Tipo de ocorrência...">
                             <label v-if="errors.description" class="text-danger" v-cloak>{{errors.description}}</label>
                         </div>
-                    </div>
-                
+                    </div>                
                     <div class="row">                                                                           
                             <div class="form-group col-md-9 mx-auto">                            
                                 <label for="Tipo">Tipo<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
@@ -22,12 +21,15 @@
                                 <label v-if="errors.typeocurrence" class="text-danger" v-cloak>{{errors.typeocurrence}}</label>   
                             </div>
                     </div>
-                    <div class="row">                                                        
-                        <div class="form-group col-md-9 mx-auto">
-                            <label for="Data">Data<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                 
-                            <input v-model="ocurrence.createdAt" type="date" class="form-control borda-input" placeholder="Selecione a data...">
-                            <label v-if="errors.data" class="text-danger" v-cloak>{{errors.data}}</label>                           
-                        </div>
+                    <div class="row">                                                                           
+                            <div class="form-group col-md-9 mx-auto">                            
+                                <label for="Curso">Curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
+                                <select v-model="ocurrence.course.code" name="tipo" class="form-control borda-input" >
+                                    <option value="">Selecione o curso...</option>
+                                    <option v-for="course in courses" v-bind:key="course.code" :value=course.code>{{course.name}}</option>                                                                
+                                </select>
+                                <label v-if="errors.course" class="text-danger" v-cloak>{{errors.course}}</label>   
+                            </div>
                     </div>
                     <div class="row">
                         <div class="col-md-9 mx-auto" style="margin-bottom: 10px;">                                    
@@ -55,15 +57,19 @@ export default {
         return{
             ocurrence: {
                 description: '',
-                createdAt: '',
+                createdAt: new Date().toISOString().split('T')[0],
                 type: {
                     code: ''
                 },
-                user:{
+                requesting:{
+                    code: ''
+                },
+                course: {
                     code: ''
                 }
             },
             typesocurrences: {},
+            courses: {},
             errors: {},        
             showAlert: false,
             buttonDisable: false,            
@@ -75,7 +81,7 @@ export default {
             e.preventDefault();
             this.errors = {};
 
-            if(this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.createdAt){
+            if(this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.course){
                 this.buttonDisable = true;
                 this.sendForm()
             }else{
@@ -88,16 +94,15 @@ export default {
             if(!this.ocurrence.type.code){
                 this.errors.typeocurrence = 'Este campo é obrigatório';
             }
-            if(!this.ocurrence.createdAt){
-                this.errors.data = 'Este campo é obrigatório';
+            if(!this.ocurrence.course){
+                this.errors.course = 'Este campo é obrigatório';
             }
             
             
         },
         async sendForm(){           
             try{                   
-                             
-                this.ocurrence.user.code = localUser.code;                              
+                this.ocurrence.requesting.code = this.localUser.code;                                         
                 const response = await axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);                                           
                 if(response.status === 201){                    
                     this.showAlert = true;
@@ -112,9 +117,11 @@ export default {
 
     },
     async mounted(){           
-            try{                  
-                const response = await axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');   
-                this.typesocurrences = response.data;
+            try{                               
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/courses/${this.localUser.code}/users`);   
+                this.courses = response.data;
+                const response2 = await axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');   
+                this.typesocurrences = response2.data;
                 if(!this.typesocurrences){
                     this.errors.typeocurrence = 'Não há tipos de ocorrências cadastradas, contate o administrador do sistema';
                 }

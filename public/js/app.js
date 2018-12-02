@@ -54165,7 +54165,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (response.status === 201) {
                                     this.showAlert = true;
                                     setTimeout(function () {
-                                        window.location.href = 'http://127.0.0.1:8000/courses/' + coursecode + '/grades';
+                                        window.location.href = '/courses/' + coursecode + '/grades';
                                     }, 3000);
                                 }
                                 _context.next = 12;
@@ -54663,7 +54663,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (response.status === 201) {
                                     this.showAlert = true;
                                     setTimeout(function () {
-                                        window.location.href = 'http://127.0.0.1:8000/courses/' + _this.codecourse + '/grades';
+                                        window.location.href = '/courses/' + _this.codecourse + '/grades';
                                     }, 3000);
                                 }
                                 _context.next = 10;
@@ -55534,7 +55534,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 if (response.status === 201) {
                                     this.showAlert = true;
                                     setTimeout(function () {
-                                        window.location.href = 'http://127.0.0.1:8000/courses/' + _this2.codecourse + '/users';
+                                        window.location.href = '/courses/' + _this2.codecourse + '/users';
                                     }, 3000);
                                 }
                                 _context.next = 13;
@@ -56299,7 +56299,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56312,6 +56312,7 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__ = __webpack_require__(50);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -56371,10 +56372,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            ocurrences: []
+            ocurrences: [],
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
         };
     },
 
@@ -56388,7 +56391,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 0:
                             _context.prev = 0;
                             _context.next = 3;
-                            return axios.get('https://sidespe-api.herokuapp.com/ocurrences');
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrences/teachers/' + this.localUser.code);
 
                         case 3:
                             response = _context.sent;
@@ -56681,6 +56684,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56688,15 +56693,19 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             ocurrence: {
                 description: '',
-                createdAt: '',
+                createdAt: new Date().toISOString().split('T')[0],
                 type: {
                     code: ''
                 },
-                user: {
+                requesting: {
+                    code: ''
+                },
+                course: {
                     code: ''
                 }
             },
             typesocurrences: {},
+            courses: {},
             errors: {},
             showAlert: false,
             buttonDisable: false,
@@ -56709,7 +56718,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             e.preventDefault();
             this.errors = {};
 
-            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.createdAt) {
+            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.course) {
                 this.buttonDisable = true;
                 this.sendForm();
             } else {
@@ -56722,8 +56731,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (!this.ocurrence.type.code) {
                 this.errors.typeocurrence = 'Este campo é obrigatório';
             }
-            if (!this.ocurrence.createdAt) {
-                this.errors.data = 'Este campo é obrigatório';
+            if (!this.ocurrence.course) {
+                this.errors.course = 'Este campo é obrigatório';
             }
         },
         sendForm: function () {
@@ -56735,8 +56744,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             case 0:
                                 _context.prev = 0;
 
-
-                                this.ocurrence.user.code = __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */].code;
+                                this.ocurrence.requesting.code = this.localUser.code;
                                 _context.next = 4;
                                 return axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);
 
@@ -56775,37 +56783,44 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     mounted: function () {
         var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            var response;
+            var response, response2;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
                         case 0:
                             _context2.prev = 0;
                             _context2.next = 3;
-                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
 
                         case 3:
                             response = _context2.sent;
 
-                            this.typesocurrences = response.data;
+                            this.courses = response.data;
+                            _context2.next = 7;
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+
+                        case 7:
+                            response2 = _context2.sent;
+
+                            this.typesocurrences = response2.data;
                             if (!this.typesocurrences) {
                                 this.errors.typeocurrence = 'Não há tipos de ocorrências cadastradas, contate o administrador do sistema';
                             }
-                            _context2.next = 11;
+                            _context2.next = 15;
                             break;
 
-                        case 8:
-                            _context2.prev = 8;
+                        case 12:
+                            _context2.prev = 12;
                             _context2.t0 = _context2['catch'](0);
 
                             console.log(_context2.t0);
 
-                        case 11:
+                        case 15:
                         case 'end':
                             return _context2.stop();
                     }
                 }
-            }, _callee2, this, [[0, 8]]);
+            }, _callee2, this, [[0, 12]]);
         }));
 
         function mounted() {
@@ -56944,31 +56959,58 @@ var render = function() {
             _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
               _vm._m(2),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ocurrence.createdAt,
-                    expression: "ocurrence.createdAt"
-                  }
-                ],
-                staticClass: "form-control borda-input",
-                attrs: { type: "date", placeholder: "Selecione a data..." },
-                domProps: { value: _vm.ocurrence.createdAt },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ocurrence.course.code,
+                      expression: "ocurrence.course.code"
                     }
-                    _vm.$set(_vm.ocurrence, "createdAt", $event.target.value)
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.ocurrence.course,
+                        "code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
                   }
-                }
-              }),
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o curso...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.courses, function(course) {
+                    return _c(
+                      "option",
+                      { key: course.code, domProps: { value: course.code } },
+                      [_vm._v(_vm._s(course.name))]
+                    )
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _vm.errors.data
+              _vm.errors.course
                 ? _c("label", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.data))
+                    _vm._v(_vm._s(_vm.errors.course))
                   ])
                 : _vm._e()
             ])
@@ -57077,8 +57119,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "Data" } }, [
-      _vm._v("Data"),
+    return _c("label", { attrs: { for: "Curso" } }, [
+      _vm._v("Curso"),
       _c(
         "span",
         {
@@ -57164,6 +57206,7 @@ module.exports = Component.exports
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__ = __webpack_require__(50);
 
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
@@ -57218,26 +57261,33 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['ocurrencecode'],
     data: function data() {
         return {
             ocurrence: {
-                code: null,
                 description: '',
                 createdAt: '',
                 type: {
                     code: ''
                 },
-                user: {
+                requesting: {
+                    code: ''
+                },
+                course: {
                     code: ''
                 }
             },
             typesocurrences: {},
+            courses: {},
             errors: {},
             showAlert: false,
-            buttonDisable: false
+            buttonDisable: false,
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
         };
     },
 
@@ -57246,7 +57296,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             e.preventDefault();
             this.errors = {};
 
-            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.createdAt) {
+            if (this.ocurrence.description && this.ocurrence.type.code && this.ocurrence.course.code) {
                 this.buttonDisable = true;
                 this.sendForm();
             } else {
@@ -57259,8 +57309,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (!this.ocurrence.type.code) {
                 this.errors.typeocurrence = 'Este campo é obrigatório';
             }
-            if (!this.ocurrence.createdAt) {
-                this.errors.data = 'Este campo é obrigatório';
+            if (!this.ocurrence.course.code) {
+                this.errors.course = 'Este campo é obrigatório';
             }
         },
         sendForm: function () {
@@ -57309,7 +57359,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     mounted: function () {
         var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            var response;
+            var response, response2, response3;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                 while (1) {
                     switch (_context2.prev = _context2.next) {
@@ -57317,30 +57367,42 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             _context2.prev = 0;
 
                             this.ocurrence.code = JSON.parse(this.ocurrencecode);
-                            //const response = await axios.get(`https://sidespe-api.herokuapp.com/ocurrence/${this.ocurrence.code}`);   
-                            //this.ocurrence = {"code":1,"description":"Aluno fez muita raiva","createdAt":"2018-12-01","user":{"code":1},"type":{"code":1}}
                             _context2.next = 4;
-                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrences/' + this.ocurrence.code);
 
                         case 4:
                             response = _context2.sent;
 
-                            this.typesocurrences = response.data;
-                            _context2.next = 11;
-                            break;
+                            this.ocurrence = response.data;
+                            _context2.next = 8;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
 
                         case 8:
-                            _context2.prev = 8;
+                            response2 = _context2.sent;
+
+                            this.courses = response2.data;
+                            _context2.next = 12;
+                            return axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');
+
+                        case 12:
+                            response3 = _context2.sent;
+
+                            this.typesocurrences = response3.data;
+                            _context2.next = 19;
+                            break;
+
+                        case 16:
+                            _context2.prev = 16;
                             _context2.t0 = _context2['catch'](0);
 
                             console.log(_context2.t0);
 
-                        case 11:
+                        case 19:
                         case 'end':
                             return _context2.stop();
                     }
                 }
-            }, _callee2, this, [[0, 8]]);
+            }, _callee2, this, [[0, 16]]);
         }));
 
         function mounted() {
@@ -57479,31 +57541,58 @@ var render = function() {
             _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
               _vm._m(2),
               _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.ocurrence.createdAt,
-                    expression: "ocurrence.createdAt"
-                  }
-                ],
-                staticClass: "form-control borda-input",
-                attrs: { type: "date", placeholder: "Selecione a data..." },
-                domProps: { value: _vm.ocurrence.createdAt },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.ocurrence.course.code,
+                      expression: "ocurrence.course.code"
                     }
-                    _vm.$set(_vm.ocurrence, "createdAt", $event.target.value)
+                  ],
+                  staticClass: "form-control borda-input",
+                  attrs: { name: "tipo" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.ocurrence.course,
+                        "code",
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
                   }
-                }
-              }),
+                },
+                [
+                  _c("option", { attrs: { value: "" } }, [
+                    _vm._v("Selecione o curso...")
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.courses, function(course) {
+                    return _c(
+                      "option",
+                      { key: course.code, domProps: { value: course.code } },
+                      [_vm._v(_vm._s(course.name))]
+                    )
+                  })
+                ],
+                2
+              ),
               _vm._v(" "),
-              _vm.errors.data
+              _vm.errors.course
                 ? _c("label", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.data))
+                    _vm._v(_vm._s(_vm.errors.course))
                   ])
                 : _vm._e()
             ])
@@ -57612,8 +57701,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "Data" } }, [
-      _vm._v("Data"),
+    return _c("label", { attrs: { for: "Curso" } }, [
+      _vm._v("Curso"),
       _c(
         "span",
         {

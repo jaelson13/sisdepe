@@ -70,14 +70,14 @@ Route::get('/courses', function () {
     }      
 });
 Route::get('/new_course', function () {
-    if((isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('ADMINISTRATOR')) || (isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('COORDINATOR'))){
+    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('ADMINISTRATOR')){
         return view('pages.course.new_course');
     }else{
         return redirect('/');
     }   
 });
 Route::get('/edit_course/{coursecode}', function ($coursecode) {
-    if((isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('ADMINISTRATOR')) || (isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('COORDINATOR'))){
+    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('ADMINISTRATOR')){
         return view('pages.course.edit_course')->with(compact('coursecode'));
     }else{
         return redirect('/');

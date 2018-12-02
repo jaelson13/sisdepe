@@ -96,7 +96,7 @@ export default {
                 if(response.status === 201){
                     this.showAlert = true;
                     setTimeout(() => {
-                        window.location.href=`http://127.0.0.1:8000/courses/${coursecode}/grades`;                        
+                        window.location.href=`/courses/${coursecode}/grades`;                        
                     }, 3000); 
                 }
             }catch(err){
