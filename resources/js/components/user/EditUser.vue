@@ -14,14 +14,14 @@
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Login">Login<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="user.login" type="text" class="form-control borda-input" placeholder="Nome...">
+                            <input v-model="user.login" type="text" class="form-control borda-input" placeholder="Nome..." disabled>
                             <label v-if="errors.login" class="text-danger" v-cloak>{{errors.login}}</label>
                         </div>
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Email">Email<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
-                            <input v-model="user.email" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email">
+                            <input v-model="user.email" type="email" class="form-control borda-input" name="email" placeholder="Email..." id="email" disabled>
                             <label v-if="errors.email" class="text-danger" v-cloak>{{errors.email}}</label>
                         </div>
                     </div>
@@ -35,7 +35,7 @@
 
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
-                            <label for="Tipo">Curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                                               
+                            <label for="Tipo de Usuário">Tipo de Usuário<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                                               
                                 <select v-model="user.type" name="tipo" class="form-control borda-input">
                                     <option value="">Selecione o tipo...</option>
                                     <option value="TEACHER">Professor</option>
@@ -87,7 +87,7 @@ export default {
             e.preventDefault();
             this.errors = {};
 
-            if(this.user.name && this.user.login && this.user.email && this.user.password && this.user.type){
+            if(this.user.name && this.user.login && this.user.email && this.user.password && this.user.password.length>5 && this.user.type){
                 this.sendForm()
             }else{
                 this.errors.button = 'Preencha os campos obrigatórios';
@@ -104,6 +104,9 @@ export default {
             }
             if(!this.user.password){
                 this.errors.password = 'Este campo é obrigatório';
+            }
+            if(this.user.password.length<6 && this.user.password){
+                this.errors.password = 'A senha deve conter no mínimo 6 caracteres';
             }
             if(!this.user.type){
                 this.errors.type = 'Este campo é obrigatório';
