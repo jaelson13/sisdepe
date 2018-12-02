@@ -53,19 +53,20 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return {
             projects: [],
+            localUser: localUser
         }
     },
     methods:{
         
     },
     async mounted(){           
-            try{            
-                const user = JSON.parse(localStorage.getItem('user'));                   
-                const response = await axios.get(`https://sidespe-api.herokuapp.com/projects/${user.code}/teachers/`);   
+            try{                                               
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/projects/${this.localUser.code}/teachers/`);   
                 this.ocurrences = response.data;                
             }catch(err){
                 console.log(err);

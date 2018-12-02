@@ -56,6 +56,7 @@ export default {
     data(){
         return {
             grade: {
+                code: null,
                 name: '',
                 period: '',
                 shift: ''
@@ -87,9 +88,8 @@ export default {
             }
         },
         async sendForm(){           
-            try{    
-                this.codecourse = JSON.parse(this.coursecode);
-                const response = await axios.put(`https://sidespe-api.herokuapp.com/courses/grades/${this.codecourse}`, this.grade);                                           
+            try{                                   
+                const response = await axios.put(`https://sidespe-api.herokuapp.com/courses/grades/${this.grade.code}`, this.grade);                                           
                 if(response.status === 201){
                     this.showAlert = true;
                     setTimeout(() => {
@@ -103,8 +103,8 @@ export default {
     },
     async mounted(){
         try{        
-            this.codecourse = JSON.parse(this.coursecode);
-            const codegrade = JSON.parse(this.gradecode);
+            this.codecourse = JSON.parse(this.coursecode);            
+            const codegrade = JSON.parse(this.gradecode);            
             const response = await axios.get("https://sidespe-api.herokuapp.com/courses/"+this.codecourse);                   
             this.grade = response.data.grades.filter(grade => grade.code == codegrade)[0];                                                               
         }catch(err){

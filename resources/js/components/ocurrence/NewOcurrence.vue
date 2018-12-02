@@ -13,7 +13,7 @@
                     </div>
                 
                     <div class="row">                                                                           
-                            <div class="form-group col-md-3">                            
+                            <div class="form-group col-md-9 mx-auto">                            
                                 <label for="Tipo">Tipo<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
                                 <select v-model="ocurrence.type.code" name="tipo" class="form-control borda-input" >
                                     <option value="">Selecione o tipo...</option>
@@ -49,6 +49,7 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return{
@@ -66,6 +67,7 @@ export default {
             errors: {},        
             showAlert: false,
             buttonDisable: false,            
+            localUser: localUser
         }
     },
     methods: {
@@ -94,8 +96,8 @@ export default {
         },
         async sendForm(){           
             try{                   
-                const user = JSON.parse(localStorage.getItem('user'));                
-                this.ocurrence.user.code = user.code;                              
+                             
+                this.ocurrence.user.code = localUser.code;                              
                 const response = await axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);                                           
                 if(response.status === 201){                    
                     this.showAlert = true;
@@ -113,6 +115,9 @@ export default {
             try{                  
                 const response = await axios.get('https://sidespe-api.herokuapp.com/ocurrencetypes');   
                 this.typesocurrences = response.data;
+                if(!this.typesocurrences){
+                    this.errors.typeocurrence = 'Não há tipos de ocorrências cadastradas, contate o administrador do sistema';
+                }
             }catch(err){
                 console.log(err);
             }

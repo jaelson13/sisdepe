@@ -52,6 +52,7 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return{
@@ -60,19 +61,18 @@ export default {
             isTeacher: false
         }
     },
-    mounted(){
-        const user = JSON.parse(localStorage.getItem('user'));
-        if(user.type === 'COORDINATOR'){
+    mounted(){    
+        if(localUser.type === 'COORDINATOR'){
             this.isAdmin = false;
             this.isCoordinator = true;
             this.isTeacher = false;
         }
-        if(user.type === 'ADMIN'){
+        if(localUser.type === 'ADMIN'){
             this.isAdmin = true;
             this.isCoordinator = false;
             this.isTeacher = false;
         }
-        if(user.type === 'TEACHER'){
+        if(localUser.type === 'TEACHER'){
             this.isAdmin = false;
             this.isCoordinator = false;
             this.isTeacher = true;

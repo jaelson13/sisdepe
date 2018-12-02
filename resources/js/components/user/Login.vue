@@ -13,7 +13,7 @@
 
                         <div class="row">                                                        
                                 <div class="form-group col-md-9 mx-auto">
-                                    <label for="Email ou Login">Email ou Login<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
+                                    <label for="Login">Login<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                       
                                     <input v-model="user.login" type="text" class="form-control borda-input" name="nome" placeholder="Email ou Login">
                                     <label v-if="errors.login" class="text-danger" v-cloak>{{errors.login}}</label>                            
                                 </div>
@@ -46,11 +46,13 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return{
             user:{ login: '',
-                password: ''},
+                   password: ''
+                 },
             errors: {}
         }
     },
@@ -73,34 +75,25 @@ export default {
             
         },
         async authenticate(){           
-            document.cookie = "isLogging=true;expires=Fri, 31 Dec 9999 23:59:59 GMT";
-            alert(document.cookie);
-            
-            const user = {
-                code: 1,
-                name: "Jaelson",
-                type: "COORDINATOR"
-            }
-
-            localStorage.setItem('user',JSON.stringify(user));
-            window.location.href='/home';  
-            //document.cookie = "isLogging=;expires=Thu, 01 Jan 1970 00:00:01 GMT;";
-            //alert(document.cookie);
-            
-            /*
             try{                              
-                const response = await axios.post("https://sidespe-api.herokuapp.com/users", this.user);                                           
-                if(response.status === 201){
-                    this.showAlert = true;
-                    setTimeout(() => {
-                        window.location.href='/users';                        
-                    }, 3000); 
+                const response = await axios.post("https://sidespe-api.herokuapp.com/jaelson/auth", this.user);                                           
+                if(response.status === 200){                    
+                    localStorage.setItem(window.btoa('user'),window.btoa(JSON.stringify(response.data)));
+                    document.cookie = `isLogging=${window.btoa(response.data.type)};expires=Fri, 31 Dec 9999 23:59:59 GMT`;
+                    window.location.href='/home';                        
+                   
                 }
             }catch(err){
-                console.log(err)
-            } */           
+                console.log(err.response)
+                if(err.response.status === 400){
+                    this.errors = {}
+                    this.errors.button = "Usuário ou Senha inválidos"
+                }
+            }     
         }
 
+    },mounted(){
+        console.log(localUser)
     }
 }
 </script>

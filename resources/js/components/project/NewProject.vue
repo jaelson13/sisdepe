@@ -76,6 +76,7 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return{
@@ -99,7 +100,8 @@ export default {
             file: '',
             errors: {},        
             showAlert: false,
-            buttonDisable: false,            
+            buttonDisable: false,  
+            localUser: localUser          
         }
     },
     methods: {
@@ -167,9 +169,8 @@ export default {
            
         },
         async sendForm(){           
-            try{                   
-                const user = JSON.parse(localStorage.getItem('user'));                
-                this.ocurrence.user.code = user.code;                              
+            try{                                  
+                this.ocurrence.user.code = this.localUser.code;                              
                 const response = await axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);                                           
                 if(response.status === 201){                    
                     this.showAlert = true;
@@ -185,12 +186,11 @@ export default {
 
     },
     async mounted(){           
-            try{           
-                const localUser = JSON.parse(localStorage.getItem('user'))       
+            try{               
                 const response = await axios.get('https://sidespe-api.herokuapp.com/courses');                   
                 if(response.data){
                     response.data.forEach(course => {                   
-                    if(course.users.findIndex(user => user.code == localUser.code) === 0){
+                    if(course.users.findIndex(user => user.code == this.localUser.code) === 0){
                         this.courses.push(course)
                     }                                    
                     }); 

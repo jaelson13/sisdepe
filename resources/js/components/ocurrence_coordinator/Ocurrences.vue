@@ -62,13 +62,15 @@
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return {
             ocurrences: [],
             courses: [],
             coursesUser: [],
-            courseSelect: ''
+            courseSelect: '',
+            localUser: localUser
         }
     },
     methods:{
@@ -83,8 +85,7 @@ export default {
         }
     },
     async mounted(){           
-            try{            
-                const localUser = JSON.parse(localStorage.getItem('user'));                   
+            try{                                               
                 const response = await axios.get('https://sidespe-api.herokuapp.com/courses');   
                 this.courses = [{
     "code":1,
@@ -185,7 +186,7 @@ export default {
 }];                
                 this.courses.forEach(course => {
                     course.users.forEach(user => {
-                        if(user.code == localUser.code){                        
+                        if(user.code == this.localUser.code){                        
                             this.coursesUser.push(course)                  
                         }
                     })

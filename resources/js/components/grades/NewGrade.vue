@@ -91,9 +91,8 @@ export default {
         async sendForm(){           
             try{    
                 const grade = [this.grade]
-                const coursecode = JSON.parse(this.coursecode)      
-                console.log(grade)         
-                const response = await axios.put(`https://sidespe-api.herokuapp.com/courses/${coursecode}/grades`, grade);                                           
+                const coursecode = JSON.parse(this.coursecode)                              
+                const response = await axios.post(`https://sidespe-api.herokuapp.com/courses/${coursecode}/grades`, grade);                                           
                 if(response.status === 201){
                     this.showAlert = true;
                     setTimeout(() => {

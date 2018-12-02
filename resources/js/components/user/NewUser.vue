@@ -81,7 +81,9 @@ export default {
             errors: {},   
             success: {},     
             showAlert: false,
-            buttonDisable: false
+            buttonDisable: false,
+            regexLogin: /^(?=.{6,20}$)[a-z][a-z0-9]+(?:-[a-z0-9]+)?$/i,
+            regexEmail:  /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
         }
     },
     methods: {
@@ -89,7 +91,7 @@ export default {
             e.preventDefault();
             this.errors = {};
 
-            if(this.user.name && this.user.login && this.user.email && this.user.password && this.user.password.length>5 && this.user.type){
+            if(this.user.name && this.regexLogin.test(this.user.login) && this.regexEmail.test(this.user.email) && this.user.password && this.user.type){
                 this.buttonDisable = true;
                 this.sendForm()
             }else{
@@ -102,15 +104,16 @@ export default {
             if(!this.user.login){
                 this.errors.login = 'Este campo é obrigatório';
             }
-            if(!this.user.email){
-                this.errors.email = 'Este campo é obrigatório';
+            if(!this.regexLogin.test(this.user.login)){
+                this.errors.login = 'Este campo deve conter entre 6 e 20 caracteres. ex: johndeep';
+                this.success.login = ''
+            }
+            if(!this.regexEmail.test(this.user.email)){
+                this.errors.email = 'Email inválido';
             }
             if(!this.user.password){
                 this.errors.password = 'Este campo é obrigatório';
-            }
-            if(this.user.password.length<6 && this.user.password){
-                this.errors.password = 'A senha deve conter no mínimo 6 caracteres';
-            }
+            }            
             if(!this.user.type){
                 this.errors.type = 'Este campo é obrigatório';
             }
@@ -130,15 +133,21 @@ export default {
             }            
         },
         async verifyLogin(){
-           try{                              
-                const response = await axios.get(`https://sidespe-api.herokuapp.com/users/verifylogin/${this.user.login}`); 
-                console.log(response.data)                                          
-                if(response.status === 204){
-                    this.buttonDisable = false
-                    this.success.login = 'Login válido!!'
-                    this.errors.login = ''
-                    this.$forceUpdate()
-                }
+           try{ 
+               if(this.regexLogin.test(this.user.login)){                             
+                    const response = await axios.get(`https://sidespe-api.herokuapp.com/users/verifylogin/${this.user.login}`); 
+                    console.log(response.data)                                          
+                    if(response.status === 204){
+                        this.buttonDisable = false
+                        this.success.login = 'Login válido!!'
+                        this.errors.login = ''
+                        this.$forceUpdate()
+                    }
+               }else{
+                   this.errors.login = 'Este campo deve conter entre 6 e 20 caracteres. ex: johndeep';
+                   this.success.login = ''
+                   this.$forceUpdate()
+               }
             }catch(err){
                 console.log(err)
                 if(err.response.status === 400){                    
@@ -150,15 +159,21 @@ export default {
             }  
         },
         async verifyEmail(){
-           try{                              
-                const response = await axios.get(`https://sidespe-api.herokuapp.com/users/verifyemail/${this.user.email}`); 
-                console.log(response.data)                                                          
-                 if(response.status === 204){
-                    this.buttonDisable = false
-                    this.success.email = 'Email válido!!'
-                    this.errors.email = ''
-                    this.$forceUpdate()
-                }
+           try{          
+                if(this.regexEmail.test(this.user.email)){                     
+                    const response = await axios.get(`https://sidespe-api.herokuapp.com/users/verifyemail/${this.user.email}`); 
+                    console.log(response.data)                                                          
+                    if(response.status === 204){
+                        this.buttonDisable = false
+                        this.success.email = 'Email válido!!'
+                        this.errors.email = ''
+                        this.$forceUpdate()
+                    }
+                }else{
+                   this.errors.email = 'Email inválido';
+                   this.success.email = ''
+                   this.$forceUpdate()
+               }
             }catch(err){                
                 console.log(err)
                 if(err.response.status === 400){                    

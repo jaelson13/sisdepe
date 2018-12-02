@@ -1,5 +1,21 @@
 <template>
-    <div>
+<div>
+<div class="card-header">
+    <div class="row">
+        <div class="col-md-4">
+            <h5 class="title pt-2">Cursos</h5>
+        </div>
+
+        <div class="col-md-8 pr-5">
+           
+            <a v-if="localUser.type != 'COORDINATOR'" class="btn btn-success float-right" href="/new_course">Novo Curso</a> 
+            
+        </div>
+    </div>
+</div>
+<div class="card-body">
+    <div class="row">
+        <div class="col-12 m-auto">    
         <div class="table-responsive">
             <table class="table table-striped" style="margin-bottom: 60px;">
                 <thead class="text-primary">
@@ -33,7 +49,7 @@
                     <td>
                         <a :href="'/courses/'+course.code+'/users'">Ver Professores</a>
                     </td>
-                    <td class="float-right mr-3">
+                    <td v-if="localUser.type != 'COORDINATOR'" class="float-right mr-3">
                         <a href="#" class="dropdown " data-toggle="dropdown">
                             <i class="material-icons">
                                 more_horiz
@@ -54,29 +70,36 @@
                 </tbody>
             </table>
         </div>
+
+     </div>
+    </div>
+</div>        
     </div>
 </template>
 
 <script>
+import localUser from '../util/LOCALUSER';
 export default {
     data(){
         return {
             courses: [],
+            localUser: localUser            
         }
     },
     methods:{
         
     },
     async mounted(){
-        try{
-            const localUser = JSON.parse(localStorage.getItem('user'));                             
+        try{                                        
             const response = await axios.get("https://sidespe-api.herokuapp.com/courses/");                                                                      
-            if(localUser.type === 'COORDINATOR'){                
-                response.data.forEach(course => {                   
-                   if(course.users.findIndex(user => user.code == localUser.code) === 0){
-                       this.courses.push(course)
-                   }                                    
-                });
+            if(this.localUser.type === 'COORDINATOR'){                
+                response.data.forEach(course => {
+                    course.users.forEach(user => {
+                        if(user.code == this.localUser.code){
+                            this.courses.push(course)
+                        }
+                    })
+                })                               
             }else{
                 this.courses = response.data; 
             }

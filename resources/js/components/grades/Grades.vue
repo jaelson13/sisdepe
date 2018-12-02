@@ -24,8 +24,14 @@
                     <td>
                         {{grade.period}}
                     </td>
-                    <td>
-                        {{grade.shift}}
+                    <td v-if="grade.shift == 'MORNING_SHIFT'">
+                        Manhã
+                    </td>
+                    <td v-if="grade.shift == 'NIGHT_SHIFT'">
+                        Noite
+                    </td>
+                    <td v-if="grade.shift == 'DAY_SHIFT'">
+                        Integral
                     </td>
                     <td class="float-right mr-3">
                         <a href="#" class="dropdown " data-toggle="dropdown">
@@ -34,8 +40,7 @@
                             </i>
                         </a>
                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                            <li><a :href="`/courses/${codecourse}/edit_grade/${grade.code}`">Editar</a></li>                            
-                            <li><a href="#">Desativar Usuário</a></li>
+                            <li><a :href="`/courses/${codecourse}/edit_grade/${grade.code}`">Editar</a></li>                                                        
                         </ul>
 
                     </td>
