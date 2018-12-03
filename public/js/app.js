@@ -56755,7 +56755,7 @@ var render = function() {
             staticClass: "title text-center mb-1",
             attrs: { id: "novoModalLabel" }
           },
-          [_vm._v("Novo Tipo de Ocorrência")]
+          [_vm._v("Nova Ocorrência")]
         ),
         _vm._v(" "),
         _c("div", { staticClass: "modal-body" }, [
@@ -57721,7 +57721,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57739,6 +57739,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -58296,14 +58299,17 @@ var render = function() {
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "list-group-item" },
-                                  [
-                                    _c("strong", [_vm._v("Justificativas:")]),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Justificativas:")]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "modal-visualizar",
+                                      staticStyle: { "max-height": "300px" }
+                                    },
                                     _vm._l(project.justifications, function(
                                       justification
                                     ) {
@@ -58311,17 +58317,34 @@ var render = function() {
                                         "ol",
                                         { key: justification.code },
                                         [
-                                          _c("li", [
+                                          _c("strong", [
                                             _vm._v(
-                                              _vm._s(justification.description)
+                                              "Criado : " +
+                                                _vm._s(
+                                                  justification.createdAt
+                                                    .split("-")
+                                                    .reverse()
+                                                    .join("-")
+                                                )
                                             )
-                                          ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "li",
+                                            { staticClass: "list-group-item" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  justification.description
+                                                )
+                                              )
+                                            ]
+                                          )
                                         ]
                                       )
                                     })
-                                  ],
-                                  2
-                                )
+                                  )
+                                ])
                               ])
                             ])
                           ])
@@ -60030,7 +60053,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60048,6 +60071,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
 //
 //
 //
@@ -61007,14 +61033,17 @@ var render = function() {
                                     )
                                   : _vm._e(),
                                 _vm._v(" "),
-                                _c(
-                                  "li",
-                                  { staticClass: "list-group-item" },
-                                  [
-                                    _c("strong", [_vm._v("Justificativas:")]),
-                                    _vm._v(" "),
-                                    _c("br"),
-                                    _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Justificativas:")]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "modal-visualizar",
+                                      staticStyle: { "max-height": "300px" }
+                                    },
                                     _vm._l(project.justifications, function(
                                       justification
                                     ) {
@@ -61022,17 +61051,34 @@ var render = function() {
                                         "ol",
                                         { key: justification.code },
                                         [
-                                          _c("li", [
+                                          _c("strong", [
                                             _vm._v(
-                                              _vm._s(justification.description)
+                                              "Criado : " +
+                                                _vm._s(
+                                                  justification.createdAt
+                                                    .split("-")
+                                                    .reverse()
+                                                    .join("-")
+                                                )
                                             )
-                                          ])
+                                          ]),
+                                          _vm._v(" "),
+                                          _c(
+                                            "li",
+                                            { staticClass: "list-group-item" },
+                                            [
+                                              _vm._v(
+                                                _vm._s(
+                                                  justification.description
+                                                )
+                                              )
+                                            ]
+                                          )
                                         ]
                                       )
                                     })
-                                  ],
-                                  2
-                                )
+                                  )
+                                ])
                               ])
                             ])
                           ])

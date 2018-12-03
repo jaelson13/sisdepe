@@ -101,10 +101,13 @@
                                         </li>
                                         <li class="list-group-item" v-if="project.status == 'REFUSED'"><strong>Status:</strong> <span class='text-danger'>Recusado</span>
                                         </li>
-                                        <li class="list-group-item"><strong>Justificativas:</strong> <br>                                                                                 
-                                                <ol v-for="justification in project.justifications" v-bind:key="justification.code">
-                                                    <li>{{justification.description}}</li>
-                                                </ol>                                                                                  
+                                        <li class="list-group-item"><strong>Justificativas:</strong> <br/>                                                                                                                                
+                                                <div class="modal-visualizar" style="max-height:300px;">
+                                                <ol class="" v-for="justification in project.justifications" v-bind:key="justification.code">
+                                                    <strong>Criado : {{justification.createdAt.split('-').reverse().join('-')}}</strong>
+                                                    <li class="list-group-item">{{justification.description}}</li>
+                                                </ol>
+                                                </div>                                                                                                                                  
                                         </li>
                                      </ul>
                                 </div>                                

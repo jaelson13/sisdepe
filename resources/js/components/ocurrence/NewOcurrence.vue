@@ -1,7 +1,7 @@
 <template>
     <div>
         <form method="POST" @submit="validateOcurrence" id="dados" >
-                <h3 class="title text-center mb-1" id="novoModalLabel">Novo Tipo de Ocorrência</h3>
+                <h3 class="title text-center mb-1" id="novoModalLabel">Nova Ocorrência</h3>
 
                 <div class="modal-body">
                     <div class="row">                                                        
