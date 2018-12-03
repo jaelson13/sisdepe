@@ -54484,8 +54484,8 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "data-notify": "message" } }, [
-      _vm._v("Curso cadastrado com sucesso, voltando para "),
-      _c("b", [_vm._v("Cursos")]),
+      _vm._v("Turma cadastrada com sucesso, voltando para "),
+      _c("b", [_vm._v("Turmas")]),
       _vm._v(" em 3s")
     ])
   }
@@ -55030,7 +55030,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "data-notify": "message" } }, [
       _vm._v("Turma editada com sucesso, voltando para "),
-      _c("b", [_vm._v("Cursos")]),
+      _c("b", [_vm._v("Turmas")]),
       _vm._v(" em 3s")
     ])
   }
@@ -55873,7 +55873,7 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "data-notify": "message" } }, [
       _vm._v("Usuários adicionados com sucesso ao curso, voltando para "),
-      _c("b", [_vm._v("Cursos")]),
+      _c("b", [_vm._v("Usuários - Turma")]),
       _vm._v(" em 3s")
     ])
   }
