@@ -56,8 +56,7 @@
                             </i>
                         </a>
                         <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                            <li><a :href="'/edit_course/'+course.code">Editar</a></li>                            
-                            <li><a href="#">Desativar Usuário</a></li>
+                            <li><a :href="'/edit_course/'+course.code">Editar</a></li>                                                        
                         </ul>
 
                     </td>
