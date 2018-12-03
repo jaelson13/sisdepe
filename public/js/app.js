@@ -54161,7 +54161,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                                 grade = [this.grade];
                                 coursecode = JSON.parse(this.coursecode);
                                 _context.next = 5;
-                                return axios.post('https://sidespe-api.herokuapp.com/courses/' + coursecode + '/grades', grade);
+                                return axios.put('https://sidespe-api.herokuapp.com/courses/' + coursecode + '/grades', grade);
 
                             case 5:
                                 response = _context.sent;
