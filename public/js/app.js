@@ -58666,7 +58666,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         validateProject: function validateProject(e) {
             e.preventDefault();
             this.errors = {};
-            console.log(this.project);
             if (this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions.length > 0 && this.formData) {
                 this.buttonDisable = true;
                 this.sendForm();
@@ -58704,6 +58703,10 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             } else {
                 this.errors.criterio = 'Preencha os campos obrigatórios';
             }
+        },
+        removeItemCriterions: function removeItemCriterions(criterion, e) {
+            e.preventDefault();
+            this.project.criterions.splice(this.project.criterions.indexOf(criterion), 1);
         },
         gradeUpdate: function gradeUpdate() {
             var _this = this;
@@ -58967,7 +58970,20 @@ var render = function() {
                         _vm._s(criterio.name) +
                           " (" +
                           _vm._s(criterio.point) +
-                          ")"
+                          ") "
+                      ),
+                      _c(
+                        "a",
+                        {
+                          staticClass: "text-danger ml-5",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              _vm.removeItemCriterions(criterio, $event)
+                            }
+                          }
+                        },
+                        [_vm._v("X")]
                       )
                     ])
                   })
@@ -60034,7 +60050,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -60214,6 +60230,9 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -60223,7 +60242,8 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             courses: [],
             courseSelect: '',
             justification: {},
-            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */],
+            showAlert: false
         };
     },
 
@@ -60281,50 +60301,50 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 _context2.prev = 0;
-
-                                console.log(project);
-                                _context2.next = 4;
+                                _context2.next = 3;
                                 return axios.put('https://sidespe-api.herokuapp.com/projects/' + project.code, project);
 
-                            case 4:
+                            case 3:
                                 response = _context2.sent;
 
                                 if (response.status === 201) {
-                                    console.log('Status atualizado');
+                                    this.showAlert = true;
+                                    setTimeout(function () {
+                                        window.location.href = '/projetos';
+                                    }, 3000);
                                 }
-                                console.log(this.justification);
 
                                 if (!this.justification.description) {
-                                    _context2.next = 12;
+                                    _context2.next = 10;
                                     break;
                                 }
 
-                                _context2.next = 10;
+                                _context2.next = 8;
                                 return axios.put('https://sidespe-api.herokuapp.com/projects/' + project.code + '/justifications', [this.justification]);
 
-                            case 10:
+                            case 8:
                                 response2 = _context2.sent;
 
                                 if (response2.status === 201) {
                                     console.log('Justification atualizado');
                                 }
 
-                            case 12:
-                                _context2.next = 17;
+                            case 10:
+                                _context2.next = 15;
                                 break;
 
-                            case 14:
-                                _context2.prev = 14;
+                            case 12:
+                                _context2.prev = 12;
                                 _context2.t0 = _context2['catch'](0);
 
                                 console.log(_context2.t0.response);
 
-                            case 17:
+                            case 15:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[0, 14]]);
+                }, _callee2, this, [[0, 12]]);
             }));
 
             function atualizarStatus(_x) {
@@ -61055,7 +61075,35 @@ var render = function() {
           )
         ]
       )
-    ])
+    ]),
+    _vm._v(" "),
+    _vm.showAlert
+      ? _c(
+          "div",
+          {
+            staticClass: "col-4 mx-auto alert alert-success",
+            staticStyle: {
+              display: "inline-block",
+              margin: "0px auto",
+              position: "fixed",
+              transition: "all 0.5s ease-in-out 0s",
+              "z-index": "1060",
+              top: "20px",
+              left: "0px",
+              right: "0px"
+            },
+            attrs: {
+              "data-notify": "container",
+              "data-notify-position": "top-center"
+            }
+          },
+          [
+            _c("span", { attrs: { "data-notify": "title" } }),
+            _vm._v(" "),
+            _vm._m(9)
+          ]
+        )
+      : _vm._e()
   ])
 }
 var staticRenderFns = [
@@ -61186,6 +61234,16 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("li", { staticClass: "list-group-item text-center" }, [
       _c("h5", { staticClass: "mb-0 mt-0" }, [_vm._v("Justificativas")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("span", { attrs: { "data-notify": "message" } }, [
+      _vm._v("Justificativa adicionada com sucesso, "),
+      _c("b", [_vm._v("Atualizando Página")]),
+      _vm._v(" em 3s")
     ])
   }
 ]

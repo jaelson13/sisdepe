@@ -157,6 +157,9 @@
 
             </table>
         </div>
+        <div v-if="showAlert" data-notify="container" class="col-4 mx-auto alert alert-success" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; top: 20px; left: 0px; right: 0px;">
+                <span data-notify="title"></span> <span data-notify="message">Justificativa adicionada com sucesso, <b>Atualizando Página</b> em 3s</span>
+        </div>
     </div>
 </template>
 
@@ -169,7 +172,8 @@ export default {
             courses: [],            
             courseSelect: '',
             justification: {},
-            localUser: localUser
+            localUser: localUser,
+            showAlert: false
         }
     },
     methods:{
@@ -187,13 +191,14 @@ export default {
             }
         },
         async atualizarStatus(project){
-            try {                     
-                console.log(project)           
+            try {                                               
                 const response = await axios.put(`https://sidespe-api.herokuapp.com/projects/${project.code}`, project);   
                 if(response.status === 201){
-                console.log('Status atualizado')
-                }     
-                console.log(this.justification)
+                    this.showAlert = true;
+                    setTimeout(() => {
+                        window.location.href='/projetos';                        
+                    }, 3000); 
+                }                     
                 if(this.justification.description){
                     const response2 = await axios.put(`https://sidespe-api.herokuapp.com/projects/${project.code}/justifications`, [this.justification]);   
                     if(response2.status === 201){

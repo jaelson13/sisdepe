@@ -24,7 +24,7 @@
                             <a data-toggle="modal" data-target="#filtrar" href="">Adicionar Critérios</a>                              
                             <div>                         
                                 <ol>
-                                    <li v-for="criterio in project.criterions" v-bind:key='criterio.name'>{{criterio.name}} ({{criterio.point}})</li>
+                                    <li v-for="criterio in project.criterions" v-bind:key='criterio.name'>{{criterio.name}} ({{criterio.point}}) <a v-on:click="removeItemCriterions(criterio,$event)" class="text-danger ml-5" href="">X</a></li>
                                 </ol>
                             </div>
                             <label v-if="errors.criterions" class="text-danger" v-cloak>{{errors.criterions}}</label>
@@ -159,8 +159,7 @@ export default {
     methods: {
         validateProject(e){
             e.preventDefault();
-            this.errors = {};
-            console.log(this.project)
+            this.errors = {};         
             if(this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions.length>0 && this.formData){
                 this.buttonDisable = true;
                 this.sendForm()
@@ -200,6 +199,10 @@ export default {
             }else{
                 this.errors.criterio = 'Preencha os campos obrigatórios';
             }                               
+        },
+        removeItemCriterions(criterion,e){
+            e.preventDefault()        
+            this.project.criterions.splice(this.project.criterions.indexOf(criterion),1);            
         },
         gradeUpdate(){               
             this.grades = []         
