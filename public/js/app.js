@@ -55137,18 +55137,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['coursecode'],
@@ -55240,38 +55228,6 @@ var render = function() {
                         _vm._s(user.email) +
                         "\n                "
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "float-right mr-3" }, [
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "dropdown-menu",
-                        staticStyle: { "padding-left": "10px" },
-                        attrs: { role: "menu" }
-                      },
-                      [
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href:
-                                  "/courses/" +
-                                  _vm.codecourse +
-                                  "/edit_grade/" +
-                                  _vm.users.code
-                              }
-                            },
-                            [_vm._v("Editar")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2, true)
-                      ]
-                    )
                   ])
                 ])
               }),
@@ -55306,33 +55262,6 @@ var staticRenderFns = [
           _vm._v("\n                    Email\n                ")
         ])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown ",
-        attrs: { href: "#", "data-toggle": "dropdown" }
-      },
-      [
-        _c("i", { staticClass: "material-icons" }, [
-          _vm._v(
-            "\n                            more_horiz\n                        "
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
     ])
   }
 ]

@@ -19,19 +19,7 @@
                     </td>
                     <td>
                         {{user.email}}
-                    </td>
-                    <td class="float-right mr-3">
-                        <a href="#" class="dropdown " data-toggle="dropdown">
-                            <i class="material-icons">
-                                more_horiz
-                            </i>
-                        </a>
-                        <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                            <li><a :href="`/courses/${codecourse}/edit_grade/${users.code}`">Editar</a></li>                            
-                            <li><a href="#">Desativar Usuário</a></li>
-                        </ul>
-
-                    </td>
+                    </td>                
                 </tr>
 
                 <tr v-if="users.length === 0" >
