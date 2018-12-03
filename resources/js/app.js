@@ -48,7 +48,10 @@ Vue.component('projects-component', require('./components/project/Projects.vue')
 Vue.component('newproject-component', require('./components/project/NewProject.vue'));
 //Ocurrences Coordinator
 Vue.component('ocurrencescoordinator-component', require('./components/ocurrence_coordinator/Ocurrences.vue'));
-
+//Projects Coodinator
+Vue.component('projectscoordinator-component', require('./components/project_coordinator/Projects.vue'));
+//Reports
+Vue.component('reports-component', require('./components/reports/Reports.vue'));
 
 
 // const files = require.context('./', true, /\.vue$/i)

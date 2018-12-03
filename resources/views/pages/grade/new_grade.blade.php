@@ -6,7 +6,7 @@
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
-            <h5 class="title pt-2">Nova Turma</h5>
+            <h5 class="title pt-2">Turmas</h5>
         </div>
 
 

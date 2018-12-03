@@ -14,10 +14,22 @@
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
                             <label for="Resumo">Resumo<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                     
-                            <textarea v-model='project.summary' class="form-control borda-input" name="descricao" placeholder="Descrição..." id="descricao" maxlength="255"></textarea>
+                            <textarea v-model='project.summary' class="form-control borda-input" name="descricao" placeholder="Resumo..." id="descricao" maxlength="255"></textarea>
                              <label v-if="errors.summary" class="text-danger" v-cloak>{{errors.summary}}</label>
                         </div>
-                    </div>                                
+                    </div>     
+                    <div class="row">                                                        
+                        <div class="form-group col-md-9 mx-auto">
+                            <label for="Critérios">Critérios:</label>                                                                 
+                            <a data-toggle="modal" data-target="#filtrar" href="">Adicionar Critérios</a>                              
+                            <div>                         
+                                <ol>
+                                    <li v-for="criterio in project.criterions" v-bind:key='criterio.name'>{{criterio.name}} ({{criterio.point}})</li>
+                                </ol>
+                            </div>
+                            <label v-if="errors.criterions" class="text-danger" v-cloak>{{errors.criterions}}</label>
+                        </div>
+                    </div>                             
                     <div class="row">                                                                           
                             <div class="form-group col-md-9 mx-auto">                            
                                 <label for="Curso">Curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
@@ -47,13 +59,13 @@
                     </div>
                     <div class="row">                                                        
                         <div class="form-group col-md-9 mx-auto">
-                            <label for="Critérios">Critérios<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                 
+                            <label for="Anexo">Anexo<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                                 
                             <br>
                             <label class="btn btn-sm btn-default mt-1 mr-2 text-white">
                                 Selecione o anexo<input v-on:change="handleFileUpload" ref="file" type="file">
                             </label><label>{{file.name}}</label>
                             <br>
-                            <label v-if="errors.criterions" class="text-danger" v-cloak>{{errors.criterions}}</label>                           
+                            <label v-if="errors.attachment" class="text-danger" v-cloak>{{errors.attachment}}</label>                           
                         </div>
                     </div>
                     <div class="row">
@@ -70,8 +82,39 @@
             </form>
 
             <div v-if="showAlert" data-notify="container" class="col-4 mx-auto alert alert-success" data-notify-position="top-center" style="display: inline-block; margin: 0px auto; position: fixed; transition: all 0.5s ease-in-out 0s; z-index: 1060; top: 20px; left: 0px; right: 0px;">
-                <span data-notify="title"></span> <span data-notify="message">Ocorrência cadastrada com sucesso, voltando para <b>Ocorrências</b> em 3s</span>
+                <span data-notify="title"></span> <span data-notify="message">Projeto cadastrado com sucesso, voltando para <b>Projetos</b> em 3s</span>
             </div>
+
+
+        <div class="modal fade" id="filtrar" tabindex="-1" role="dialog" aria-labelledby="filtrarModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                    </div>
+                    <div class="modal-body modal-visualizar">
+                        <h5 class="text-center">Adicionar Critério</h5>
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Critério">Critério<span class="text-danger f-16" title="Campo obrigatório">*</span></label> 
+                                <input v-model="criterioName" type="text" class="form-control borda-input" placeholder="Critério...">                                
+                            </div>
+                        </div>
+                        <div class="row">                                                        
+                            <div class="form-group col-md-9 mx-auto">
+                                <label for="Pontos">Pontos<span class="text-danger f-16" title="Campo obrigatório">*</span></label> 
+                                <input v-model="criterioPoint" type="number" class="form-control borda-input">                                                        
+                            </div>
+                        </div>
+                        <label v-if="errors.criterio" class="text-danger text-center" v-cloak>{{errors.criterio}}</label> 
+                    </div>   
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" v-on:click="addCriterion">Add</button>
+                        <button type="button" class="btn btn-primary" data-dismiss="modal">Fechar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -83,6 +126,7 @@ export default {
             project: {
                 name: '',
                 summary: '',
+                status: 'WAITING_FOR_APROVAL',
                 course: {
                     code: ''
                 },
@@ -93,14 +137,22 @@ export default {
                     code: ''
                 },
                 requestedDate: '',
-                criterions: ''
+                criterions: [],
+                attachment: {}
             },
             courses: [],
             grades: [],
-            file: '',
+            //Criterios
+            criterioName: '',
+            criterioPoint: '',
+            //Arquivo
+            file: '', 
+            formData: '',           
+            //Erros
             errors: {},        
             showAlert: false,
             buttonDisable: false,  
+            //User auth
             localUser: localUser          
         }
     },
@@ -108,14 +160,13 @@ export default {
         validateProject(e){
             e.preventDefault();
             this.errors = {};
-
-            if(this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions){
+            console.log(this.project)
+            if(this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions.length>0 && this.formData){
                 this.buttonDisable = true;
                 this.sendForm()
             }else{
                 this.errors.button = 'Preencha os campos obrigatórios';
             }            
-
             if(!this.project.name){
                 this.errors.name = 'Este campo é obrigatório';
             }
@@ -131,19 +182,31 @@ export default {
             if(!this.project.requestedDate){
                 this.errors.requestedDate = 'Este campo é obrigatório';
             }
-            if(!this.project.criterions){
+            if(this.project.criterions.length < 1){
                 this.errors.criterions = 'Este campo é obrigatório';
+            }
+            if(!this.formData){
+                this.errors.attachment = 'É necessário adicionar o anexo do projeto';
             }
             
             
+        },
+        addCriterion(){  
+            this.errors = {}         
+            if(this.criterioName && this.criterioPoint){
+                this.project.criterions.push({name: this.criterioName, point: this.criterioPoint});
+                this.criterioName = '';
+                this.criterioPoint = '';
+            }else{
+                this.errors.criterio = 'Preencha os campos obrigatórios';
+            }                               
         },
         gradeUpdate(){               
             this.grades = []         
             this.project.grade.code = ''
             this.courses.forEach(course => {                   
                 if(course.code == this.project.course.code){
-                    course.grades.forEach(grade => {
-                        console.log(grade)
+                    course.grades.forEach(grade => {                        
                         this.grades.push(grade)
                     })
                 }                                    
@@ -152,30 +215,25 @@ export default {
         async handleFileUpload() {
             this.file = this.$refs.file.files[0];         
             if(this.file.type != 'application/pdf' && this.file.type != 'application/msword' && this.file.type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
-                this.errors.criterions = ''
-                this.errors.criterions = "Arquivo não adicionado ou suportado, obs: Só são aceitor arquivos pdf e word"
+                this.errors.attachment = ''
+                this.errors.attachment = "Arquivo não adicionado ou suportado, obs: Só são aceitor arquivos pdf e word"
             }else{
-                this.errors.criterions = ''
-                try {
-                    const formData = new FormData();
-                    formData.append('file', this.file)                    
-                    const response = await axios.post('http://localhost:8000/upload', formData)
-                    console.log(response.data)
-                } catch (error) {
-                    console.log(error)
-                }
-                  //Verificar se fara o upload ou fará quando enviar.
+                this.errors.attachment = ''
+                this.formData = new FormData();
+                this.formData.append('file', this.file)                                  
             }
            
         },
         async sendForm(){           
-            try{                                  
-                this.ocurrence.user.code = this.localUser.code;                              
-                const response = await axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);                                           
-                if(response.status === 201){                    
+            try{   
+                this.project.requesting.code = this.localUser.code;        
+                const response = await axios.post('https://sidespe-api.herokuapp.com/projects/uploadFile', this.formData)
+                this.project.attachment = response.data;                                                                            
+                const response2 = await axios.post("https://sidespe-api.herokuapp.com/projects", this.project);                                           
+                if(response2.status === 201){                    
                     this.showAlert = true;
                     setTimeout(() => {
-                        window.location.href='/ocurrences';                        
+                        window.location.href='/projects';                        
                     }, 3000); 
                 }
             }catch(err){
@@ -187,14 +245,8 @@ export default {
     },
     async mounted(){           
             try{               
-                const response = await axios.get('https://sidespe-api.herokuapp.com/courses');                   
-                if(response.data){
-                    response.data.forEach(course => {                   
-                    if(course.users.findIndex(user => user.code == this.localUser.code) === 0){
-                        this.courses.push(course)
-                    }                                    
-                    }); 
-                }
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/courses/${this.localUser.code}/users`);   
+                this.courses = response.data;
             }catch(err){
                 console.log(err);
             }

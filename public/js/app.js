@@ -14364,6 +14364,10 @@ Vue.component('projects-component', __webpack_require__(122));
 Vue.component('newproject-component', __webpack_require__(127));
 //Ocurrences Coordinator
 Vue.component('ocurrencescoordinator-component', __webpack_require__(130));
+//Projects Coodinator
+Vue.component('projectscoordinator-component', __webpack_require__(139));
+//Reports
+Vue.component('reports-component', __webpack_require__(144));
 
 // const files = require.context('./', true, /\.vue$/i)
 
@@ -48881,7 +48885,7 @@ var staticRenderFns = [
             staticClass: "text-center",
             staticStyle: { "font-family": "'roboto', cursive" }
           },
-          [_vm._v("SISDEPE")]
+          [_vm._v("SISDEPE"), _c("i", { staticClass: "fa fa-book ml-2" })]
         )
       ])
     ])
@@ -55969,7 +55973,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56034,6 +56038,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56041,21 +56057,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             isAdmin: false,
             isCoordinator: false,
-            isTeacher: false
+            isTeacher: false,
+            localUser: __WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */]
         };
     },
     mounted: function mounted() {
-        if (__WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */].type === 'COORDINATOR') {
+        if (this.localUser.type === 'COORDINATOR') {
             this.isAdmin = false;
             this.isCoordinator = true;
             this.isTeacher = false;
         }
-        if (__WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */].type === 'ADMINISTRATOR') {
+        if (this.localUser.type === 'ADMINISTRATOR') {
             this.isAdmin = true;
             this.isCoordinator = false;
             this.isTeacher = false;
         }
-        if (__WEBPACK_IMPORTED_MODULE_0__util_LOCALUSER__["a" /* default */].type === 'TEACHER') {
+        if (this.localUser.type === 'TEACHER') {
             this.isAdmin = false;
             this.isCoordinator = false;
             this.isTeacher = true;
@@ -56099,7 +56116,15 @@ var render = function() {
           }
         ]
       },
-      [_vm._m(3), _vm._v(" "), _vm._m(4)]
+      [
+        _vm._m(3),
+        _vm._v(" "),
+        _vm._m(4),
+        _vm._v(" "),
+        _vm._m(5),
+        _vm._v(" "),
+        _vm._m(6)
+      ]
     ),
     _vm._v(" "),
     _c(
@@ -56114,7 +56139,7 @@ var render = function() {
           }
         ]
       },
-      [_vm._m(5), _vm._v(" "), _vm._m(6)]
+      [_vm._m(7), _vm._v(" "), _vm._m(8)]
     )
   ])
 }
@@ -56175,7 +56200,31 @@ var staticRenderFns = [
       _c("a", { attrs: { href: "/demandas" } }, [
         _c("i", { staticClass: "fa fa-book" }),
         _vm._v(" "),
-        _c("p", [_vm._v("Demandas")])
+        _c("p", [_vm._v("Ocorrencias")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/projetos" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Projetos")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", [
+      _c("a", { attrs: { href: "/relatorios" } }, [
+        _c("i", { staticClass: "fa fa-book" }),
+        _vm._v(" "),
+        _c("p", [_vm._v("Relatórios")])
       ])
     ])
   },
@@ -56299,7 +56348,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -56358,19 +56407,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -56378,10 +56414,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         return {
             ocurrences: [],
             localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
+
         };
     },
 
     methods: {},
+    computed: {},
     mounted: function () {
         var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
             var response;
@@ -56397,21 +56435,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                             response = _context.sent;
 
                             this.ocurrences = response.data;
-                            _context.next = 10;
+                            console.log(this.ocurrences);
+                            _context.next = 11;
                             break;
 
-                        case 7:
-                            _context.prev = 7;
+                        case 8:
+                            _context.prev = 8;
                             _context.t0 = _context['catch'](0);
 
                             console.log(_context.t0);
 
-                        case 10:
+                        case 11:
                         case 'end':
                             return _context.stop();
                     }
                 }
-            }, _callee, this, [[0, 7]]);
+            }, _callee, this, [[0, 8]]);
         }));
 
         function mounted() {
@@ -56473,34 +56512,6 @@ var render = function() {
                         ) +
                         "\n                "
                     )
-                  ]),
-                  _vm._v(" "),
-                  _c("td", { staticClass: "float-right mr-3" }, [
-                    _vm._m(1, true),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "dropdown-menu",
-                        staticStyle: { "padding-left": "10px" },
-                        attrs: { role: "menu" }
-                      },
-                      [
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href: "/edit_ocurrence/" + ocurrence.code
-                              }
-                            },
-                            [_vm._v("Editar")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2, true)
-                      ]
-                    )
                   ])
                 ])
               }),
@@ -56535,33 +56546,6 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [_vm._v("\n                    Data\n                ")])
       ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown ",
-        attrs: { href: "#", "data-toggle": "dropdown" }
-      },
-      [
-        _c("i", { staticClass: "material-icons" }, [
-          _vm._v(
-            "\n                            more_horiz\n                        "
-          )
-        ])
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
     ])
   }
 ]
@@ -57819,7 +57803,7 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -57891,13 +57875,87 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
             projects: [],
-            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */],
+            justification: ''
         };
     },
 
@@ -57911,12 +57969,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 0:
                             _context.prev = 0;
                             _context.next = 3;
-                            return axios.get('https://sidespe-api.herokuapp.com/projects/' + this.localUser.code + '/teachers/');
+                            return axios.get('https://sidespe-api.herokuapp.com/projects/' + this.localUser.code + '/teachers');
 
                         case 3:
                             response = _context.sent;
 
-                            this.ocurrences = response.data;
+                            this.projects = response.data;
                             _context.next = 10;
                             break;
 
@@ -57995,34 +58053,364 @@ var render = function() {
                     )
                   ]),
                   _vm._v(" "),
-                  _c("td", { staticClass: "float-right mr-3" }, [
-                    _vm._m(1, true),
+                  _c("td", [
+                    project.status == "WAITING_FOR_APROVAL"
+                      ? _c("span", [_vm._v("Aguardando Aprovação")])
+                      : _vm._e(),
                     _vm._v(" "),
+                    project.status == "APPROVED"
+                      ? _c("span", { staticClass: "text-success" }, [
+                          _vm._v("Aprovado")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    project.status == "PENDING"
+                      ? _c("span", { staticClass: "text-warning" }, [
+                          _vm._v("Pendente")
+                        ])
+                      : _vm._e(),
+                    _vm._v(" "),
+                    project.status == "REFUSED"
+                      ? _c("span", { staticClass: "text-danger" }, [
+                          _vm._v("Recusado")
+                        ])
+                      : _vm._e()
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
                     _c(
-                      "ul",
+                      "a",
                       {
-                        staticClass: "dropdown-menu",
-                        staticStyle: { "padding-left": "10px" },
-                        attrs: { role: "menu" }
+                        attrs: {
+                          href: "",
+                          "data-toggle": "modal",
+                          "data-target": "#detalhe" + project.code
+                        }
                       },
                       [
-                        _c("li", [
-                          _c(
-                            "a",
-                            {
-                              attrs: {
-                                href:
-                                  "/edit_type_ocurrence/" + _vm.ocurrence.code
-                              }
-                            },
-                            [_vm._v("Editar")]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _vm._m(2, true)
+                        _vm._v(
+                          "\n                        Ver Detalhes\n                    "
+                        )
                       ]
                     )
-                  ])
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "detalhe" + project.code,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "removerModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(1, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body " }, [
+                              _c("ul", { staticClass: "list-group" }, [
+                                _vm._m(2, true),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "list-group-item text-center"
+                                  },
+                                  [_vm._v(_vm._s(project.name))]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Solicitante: ")]),
+                                  _vm._v(
+                                    "Professor " +
+                                      _vm._s(project.requesting.name)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Resumo:")]),
+                                  _vm._v(" " + _vm._s(project.summary))
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Data:")]),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(
+                                        project.requestedDate
+                                          .split("-")
+                                          .reverse()
+                                          .join("-")
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                project.status == "WAITING_FOR_APROVAL"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _vm._v("Aguardando Aprovação")
+                                        ])
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "APPROVED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-success" },
+                                          [_vm._v("Aprovado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "PENDING"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-warning" },
+                                          [_vm._v("Pendente")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "REFUSED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v("Recusado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Justificativas:")]),
+                                  _vm._v(" "),
+                                  project.justifications.length > 0
+                                    ? _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "#",
+                                            "data-toggle": "modal",
+                                            "data-target":
+                                              "#justificativa" + project.code
+                                          }
+                                        },
+                                        [_vm._v("Ver Justificativas")]
+                                      )
+                                    : _c("span", [
+                                        _vm._v(
+                                          "Nenhuma justificativa adicionada pelo coordenador"
+                                        )
+                                      ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [
+                                    _vm._v("Critérios Avaliativos:")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "ol",
+                                    _vm._l(project.criterions, function(
+                                      criterio
+                                    ) {
+                                      return _c("li", { key: criterio.name }, [
+                                        _vm._v(
+                                          _vm._s(criterio.name) +
+                                            " (" +
+                                            _vm._s(criterio.point) +
+                                            ")."
+                                        )
+                                      ])
+                                    })
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Anexo:")]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          "https://sidespe-api.herokuapp.com/projects/downloadFile/" +
+                                          project.attachment.fileName,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [_vm._v("Ver Documento")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "justificativa" + project.code,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "removerModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(3, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body " }, [
+                              _c("ul", { staticClass: "list-group" }, [
+                                _vm._m(4, true),
+                                _vm._v(" "),
+                                project.status == "WAITING_FOR_APROVAL"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _vm._v("Aguardando Aprovação")
+                                        ])
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "APPROVED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-success" },
+                                          [_vm._v("Aprovado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "PENDING"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-warning" },
+                                          [_vm._v("Pendente")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "REFUSED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v("Recusado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "list-group-item" },
+                                  [
+                                    _c("strong", [_vm._v("Justificativas:")]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._l(project.justifications, function(
+                                      justification
+                                    ) {
+                                      return _c(
+                                        "ol",
+                                        { key: justification.code },
+                                        [
+                                          _c("li", [
+                                            _vm._v(
+                                              _vm._s(justification.description)
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
                 ])
               }),
               _vm._v(" "),
@@ -58056,7 +58444,9 @@ var staticRenderFns = [
         _vm._v(" "),
         _c("th", [
           _vm._v("\n                    Data do Projeto\n                ")
-        ])
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Status\n                ")])
       ])
     ])
   },
@@ -58064,27 +58454,54 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "dropdown ",
-        attrs: { href: "#", "data-toggle": "dropdown" }
-      },
-      [
-        _c("i", { staticClass: "material-icons" }, [
-          _vm._v(
-            "\n                            more_horiz\n                        "
-          )
-        ])
-      ]
-    )
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      )
+    ])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "#" } }, [_vm._v("Desativar Usuário")])
+    return _c("li", { staticClass: "list-group-item text-center" }, [
+      _c("h5", { staticClass: "mb-0 mt-0" }, [_vm._v("Projeto")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item text-center" }, [
+      _c("h5", { staticClass: "mb-0 mt-0" }, [_vm._v("Justificativas")])
     ])
   }
 ]
@@ -58234,6 +58651,49 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -58242,6 +58702,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             project: {
                 name: '',
                 summary: '',
+                status: 'WAITING_FOR_APROVAL',
                 course: {
                     code: ''
                 },
@@ -58252,14 +58713,22 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                     code: ''
                 },
                 requestedDate: '',
-                criterions: ''
+                criterions: [],
+                attachment: {}
             },
             courses: [],
             grades: [],
+            //Criterios
+            criterioName: '',
+            criterioPoint: '',
+            //Arquivo
             file: '',
+            formData: '',
+            //Erros
             errors: {},
             showAlert: false,
             buttonDisable: false,
+            //User auth
             localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
         };
     },
@@ -58268,14 +58737,13 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         validateProject: function validateProject(e) {
             e.preventDefault();
             this.errors = {};
-
-            if (this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions) {
+            console.log(this.project);
+            if (this.project.name && this.project.summary && this.project.course.code && this.project.grade.code && this.project.requestedDate && this.project.criterions.length > 0 && this.formData) {
                 this.buttonDisable = true;
                 this.sendForm();
             } else {
                 this.errors.button = 'Preencha os campos obrigatórios';
             }
-
             if (!this.project.name) {
                 this.errors.name = 'Este campo é obrigatório';
             }
@@ -58291,8 +58759,21 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             if (!this.project.requestedDate) {
                 this.errors.requestedDate = 'Este campo é obrigatório';
             }
-            if (!this.project.criterions) {
+            if (this.project.criterions.length < 1) {
                 this.errors.criterions = 'Este campo é obrigatório';
+            }
+            if (!this.formData) {
+                this.errors.attachment = 'É necessário adicionar o anexo do projeto';
+            }
+        },
+        addCriterion: function addCriterion() {
+            this.errors = {};
+            if (this.criterioName && this.criterioPoint) {
+                this.project.criterions.push({ name: this.criterioName, point: this.criterioPoint });
+                this.criterioName = '';
+                this.criterioPoint = '';
+            } else {
+                this.errors.criterio = 'Preencha os campos obrigatórios';
             }
         },
         gradeUpdate: function gradeUpdate() {
@@ -58303,7 +58784,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             this.courses.forEach(function (course) {
                 if (course.code == _this.project.course.code) {
                     course.grades.forEach(function (grade) {
-                        console.log(grade);
                         _this.grades.push(grade);
                     });
                 }
@@ -58311,51 +58791,26 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         },
         handleFileUpload: function () {
             var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
-                var formData, response;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
                     while (1) {
                         switch (_context.prev = _context.next) {
                             case 0:
                                 this.file = this.$refs.file.files[0];
-
-                                if (!(this.file.type != 'application/pdf' && this.file.type != 'application/msword' && this.file.type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document")) {
-                                    _context.next = 6;
-                                    break;
+                                if (this.file.type != 'application/pdf' && this.file.type != 'application/msword' && this.file.type != "application/vnd.openxmlformats-officedocument.wordprocessingml.document") {
+                                    this.errors.attachment = '';
+                                    this.errors.attachment = "Arquivo não adicionado ou suportado, obs: Só são aceitor arquivos pdf e word";
+                                } else {
+                                    this.errors.attachment = '';
+                                    this.formData = new FormData();
+                                    this.formData.append('file', this.file);
                                 }
 
-                                this.errors.criterions = '';
-                                this.errors.criterions = "Arquivo não adicionado ou suportado, obs: Só são aceitor arquivos pdf e word";
-                                _context.next = 19;
-                                break;
-
-                            case 6:
-                                this.errors.criterions = '';
-                                _context.prev = 7;
-                                formData = new FormData();
-
-                                formData.append('file', this.file);
-                                _context.next = 12;
-                                return axios.post('http://localhost:8000/upload', formData);
-
-                            case 12:
-                                response = _context.sent;
-
-                                console.log(response.data);
-                                _context.next = 19;
-                                break;
-
-                            case 16:
-                                _context.prev = 16;
-                                _context.t0 = _context['catch'](7);
-
-                                console.log(_context.t0);
-
-                            case 19:
+                            case 2:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[7, 16]]);
+                }, _callee, this);
             }));
 
             function handleFileUpload() {
@@ -58366,41 +58821,48 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
         }(),
         sendForm: function () {
             var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-                var response;
+                var response, response2;
                 return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
                     while (1) {
                         switch (_context2.prev = _context2.next) {
                             case 0:
                                 _context2.prev = 0;
 
-                                this.ocurrence.user.code = this.localUser.code;
+                                this.project.requesting.code = this.localUser.code;
                                 _context2.next = 4;
-                                return axios.post("https://sidespe-api.herokuapp.com/ocurrences", this.ocurrence);
+                                return axios.post('https://sidespe-api.herokuapp.com/projects/uploadFile', this.formData);
 
                             case 4:
                                 response = _context2.sent;
 
-                                if (response.status === 201) {
-                                    this.showAlert = true;
-                                    setTimeout(function () {
-                                        window.location.href = '/ocurrences';
-                                    }, 3000);
-                                }
-                                _context2.next = 11;
-                                break;
+                                this.project.attachment = response.data;
+                                _context2.next = 8;
+                                return axios.post("https://sidespe-api.herokuapp.com/projects", this.project);
 
                             case 8:
-                                _context2.prev = 8;
+                                response2 = _context2.sent;
+
+                                if (response2.status === 201) {
+                                    this.showAlert = true;
+                                    setTimeout(function () {
+                                        window.location.href = '/projects';
+                                    }, 3000);
+                                }
+                                _context2.next = 15;
+                                break;
+
+                            case 12:
+                                _context2.prev = 12;
                                 _context2.t0 = _context2['catch'](0);
 
                                 console.log(_context2.t0);
 
-                            case 11:
+                            case 15:
                             case 'end':
                                 return _context2.stop();
                         }
                     }
-                }, _callee2, this, [[0, 8]]);
+                }, _callee2, this, [[0, 12]]);
             }));
 
             function sendForm() {
@@ -58412,8 +58874,6 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
     },
     mounted: function () {
         var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
-            var _this2 = this;
-
             var response;
             return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                 while (1) {
@@ -58421,20 +58881,12 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         case 0:
                             _context3.prev = 0;
                             _context3.next = 3;
-                            return axios.get('https://sidespe-api.herokuapp.com/courses');
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
 
                         case 3:
                             response = _context3.sent;
 
-                            if (response.data) {
-                                response.data.forEach(function (course) {
-                                    if (course.users.findIndex(function (user) {
-                                        return user.code == _this2.localUser.code;
-                                    }) === 0) {
-                                        _this2.courses.push(course);
-                                    }
-                                });
-                            }
+                            this.courses = response.data;
                             _context3.next = 10;
                             break;
 
@@ -58536,7 +58988,7 @@ var render = function() {
                 staticClass: "form-control borda-input",
                 attrs: {
                   name: "descricao",
-                  placeholder: "Descrição...",
+                  placeholder: "Resumo...",
                   id: "descricao",
                   maxlength: "255"
                 },
@@ -58554,6 +59006,48 @@ var render = function() {
               _vm.errors.summary
                 ? _c("label", { staticClass: "text-danger" }, [
                     _vm._v(_vm._s(_vm.errors.summary))
+                  ])
+                : _vm._e()
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+              _c("label", { attrs: { for: "Critérios" } }, [
+                _vm._v("Critérios:")
+              ]),
+              _vm._v(" "),
+              _c(
+                "a",
+                {
+                  attrs: {
+                    "data-toggle": "modal",
+                    "data-target": "#filtrar",
+                    href: ""
+                  }
+                },
+                [_vm._v("Adicionar Critérios")]
+              ),
+              _vm._v(" "),
+              _c("div", [
+                _c(
+                  "ol",
+                  _vm._l(_vm.project.criterions, function(criterio) {
+                    return _c("li", { key: criterio.name }, [
+                      _vm._v(
+                        _vm._s(criterio.name) +
+                          " (" +
+                          _vm._s(criterio.point) +
+                          ")"
+                      )
+                    ])
+                  })
+                )
+              ]),
+              _vm._v(" "),
+              _vm.errors.criterions
+                ? _c("label", { staticClass: "text-danger" }, [
+                    _vm._v(_vm._s(_vm.errors.criterions))
                   ])
                 : _vm._e()
             ])
@@ -58740,9 +59234,9 @@ var render = function() {
               _vm._v(" "),
               _c("br"),
               _vm._v(" "),
-              _vm.errors.criterions
+              _vm.errors.attachment
                 ? _c("label", { staticClass: "text-danger" }, [
-                    _vm._v(_vm._s(_vm.errors.criterions))
+                    _vm._v(_vm._s(_vm.errors.attachment))
                   ])
                 : _vm._e()
             ])
@@ -58811,7 +59305,121 @@ var render = function() {
             _vm._m(6)
           ]
         )
-      : _vm._e()
+      : _vm._e(),
+    _vm._v(" "),
+    _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "filtrar",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "filtrarModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _vm._m(7),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-body modal-visualizar" }, [
+                _c("h5", { staticClass: "text-center" }, [
+                  _vm._v("Adicionar Critério")
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+                    _vm._m(8),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.criterioName,
+                          expression: "criterioName"
+                        }
+                      ],
+                      staticClass: "form-control borda-input",
+                      attrs: { type: "text", placeholder: "Critério..." },
+                      domProps: { value: _vm.criterioName },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.criterioName = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "form-group col-md-9 mx-auto" }, [
+                    _vm._m(9),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.criterioPoint,
+                          expression: "criterioPoint"
+                        }
+                      ],
+                      staticClass: "form-control borda-input",
+                      attrs: { type: "number" },
+                      domProps: { value: _vm.criterioPoint },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.criterioPoint = $event.target.value
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _vm.errors.criterio
+                  ? _c("label", { staticClass: "text-danger text-center" }, [
+                      _vm._v(_vm._s(_vm.errors.criterio))
+                    ])
+                  : _vm._e()
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "modal-footer" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button" },
+                    on: { click: _vm.addCriterion }
+                  },
+                  [_vm._v("Add")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "button",
+                  {
+                    staticClass: "btn btn-primary",
+                    attrs: { type: "button", "data-dismiss": "modal" }
+                  },
+                  [_vm._v("Fechar")]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
   ])
 }
 var staticRenderFns = [
@@ -58899,8 +59507,8 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "Critérios" } }, [
-      _vm._v("Critérios"),
+    return _c("label", { attrs: { for: "Anexo" } }, [
+      _vm._v("Anexo"),
       _c(
         "span",
         {
@@ -58916,9 +59524,60 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("span", { attrs: { "data-notify": "message" } }, [
-      _vm._v("Ocorrência cadastrada com sucesso, voltando para "),
-      _c("b", [_vm._v("Ocorrências")]),
+      _vm._v("Projeto cadastrado com sucesso, voltando para "),
+      _c("b", [_vm._v("Projetos")]),
       _vm._v(" em 3s")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("×")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Critério" } }, [
+      _vm._v("Critério"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Pontos" } }, [
+      _vm._v("Pontos"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
     ])
   }
 ]
@@ -59017,13 +59676,442 @@ exports = module.exports = __webpack_require__(3)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 133 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__ = __webpack_require__(50);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ocurrences: [],
+            courses: [],
+            courseSelect: '',
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
+        };
+    },
+
+    methods: {
+        filtrarDados: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+
+                                console.log(this.courseSelect);
+                                _context.next = 4;
+                                return axios.get('https://sidespe-api.herokuapp.com/ocurrences/' + this.courseSelect + '/courses');
+
+                            case 4:
+                                response = _context.sent;
+
+                                this.ocurrences = response.data.sort(function (a, b) {
+                                    return new Date(a.createdAt) - new Date(b.createdAt);
+                                });;
+                                _context.next = 12;
+                                break;
+
+                            case 9:
+                                _context.prev = 9;
+                                _context.t0 = _context['catch'](0);
+
+                                if (_context.t0.response.status = 404) {
+                                    this.ocurrences = [];
+                                }
+
+                            case 12:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 9]]);
+            }));
+
+            function filtrarDados() {
+                return _ref.apply(this, arguments);
+            }
+
+            return filtrarDados;
+        }()
+    },
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+                            _context2.next = 3;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
+
+                        case 3:
+                            response = _context2.sent;
+
+                            this.courses = response.data;
+
+                            _context2.next = 10;
+                            break;
+
+                        case 7:
+                            _context2.prev = 7;
+                            _context2.t0 = _context2['catch'](0);
+
+                            console.log(_context2.t0);
+
+                        case 10:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[0, 7]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 134 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.courseSelect,
+                  expression: "courseSelect"
+                }
+              ],
+              staticClass: "form-control borda-input",
+              attrs: { name: "tipo" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.courseSelect = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.filtrarDados
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Selecione o curso...")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.courses, function(course) {
+                return _c(
+                  "option",
+                  { key: course.code, domProps: { value: course.code } },
+                  [_vm._v(_vm._s(course.name))]
+                )
+              })
+            ],
+            2
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-striped",
+          staticStyle: { "margin-bottom": "60px" }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.ocurrences, function(ocurrence) {
+                return _c("tr", { key: ocurrence.code }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.description) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(ocurrence.type.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          ocurrence.createdAt
+                            .split("-")
+                            .reverse()
+                            .join("-")
+                        ) +
+                        "\n                "
+                    )
+                  ])
+                ])
+              }),
+              _vm._v(" "),
+              _vm.ocurrences.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "3" } }, [
+                      _vm._v("Nenhuma ocorrência foi encontrada.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Selecione o curso" } }, [
+      _vm._v("Selecione o curso"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", { staticClass: "td" }, [
+          _vm._v("\n                    Descrição\n                ")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Tipo\n                ")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Data\n                ")])
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-407408e4", module.exports)
+  }
+}
+
+/***/ }),
+/* 135 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(140)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(142)
+/* template */
+var __vue_template__ = __webpack_require__(143)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/project_coordinator/Projects.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0774744a", Component.options)
+  } else {
+    hotAPI.reload("data-v-0774744a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 140 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(141);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("6ea32866", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0774744a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Projects.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-0774744a\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Projects.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 141 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59098,15 +60186,114 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
         return {
-            ocurrences: [],
+            projects: [],
             courses: [],
-            coursesUser: [],
             courseSelect: '',
+            justification: {},
             localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
         };
     },
@@ -59120,30 +60307,35 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
                         switch (_context.prev = _context.next) {
                             case 0:
                                 _context.prev = 0;
+                                _context.next = 3;
+                                return axios.get('https://sidespe-api.herokuapp.com/projects/courses/' + this.courseSelect);
 
-                                console.log(this.courseSelect);
-                                _context.next = 4;
-                                return axios.get('https://sidespe-api.herokuapp.com/ocurrence/1/course');
-
-                            case 4:
+                            case 3:
                                 response = _context.sent;
 
-                                this.ocurrences = response.data.sort(function (a, b) {
-                                    return new Date(a.createdAt) - new Date(b.createdAt);
-                                });;
+                                if (response.status === 200) {
+                                    this.projects = response.data.sort(function (a, b) {
+                                        return new Date(a.requestedDate) - new Date(b.requestedDate);
+                                    });
+                                }
+                                if (response.status === 204) {
+                                    this.projects = [];
+                                }
                                 _context.next = 11;
                                 break;
 
-                            case 9:
-                                _context.prev = 9;
+                            case 8:
+                                _context.prev = 8;
                                 _context.t0 = _context['catch'](0);
+
+                                console.log(_context.t0);
 
                             case 11:
                             case 'end':
                                 return _context.stop();
                         }
                     }
-                }, _callee, this, [[0, 9]]);
+                }, _callee, this, [[0, 8]]);
             }));
 
             function filtrarDados() {
@@ -59151,123 +60343,103 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
             }
 
             return filtrarDados;
+        }(),
+        atualizarStatus: function () {
+            var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2(project) {
+                var response, response2;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                    while (1) {
+                        switch (_context2.prev = _context2.next) {
+                            case 0:
+                                _context2.prev = 0;
+
+                                console.log(project);
+                                _context2.next = 4;
+                                return axios.put('https://sidespe-api.herokuapp.com/projects/' + project.code, project);
+
+                            case 4:
+                                response = _context2.sent;
+
+                                if (response.status === 201) {
+                                    console.log('Status atualizado');
+                                }
+                                console.log(this.justification);
+
+                                if (!this.justification.description) {
+                                    _context2.next = 12;
+                                    break;
+                                }
+
+                                _context2.next = 10;
+                                return axios.put('https://sidespe-api.herokuapp.com/projects/' + project.code + '/justifications', [this.justification]);
+
+                            case 10:
+                                response2 = _context2.sent;
+
+                                if (response2.status === 201) {
+                                    console.log('Justification atualizado');
+                                }
+
+                            case 12:
+                                _context2.next = 17;
+                                break;
+
+                            case 14:
+                                _context2.prev = 14;
+                                _context2.t0 = _context2['catch'](0);
+
+                                console.log(_context2.t0.response);
+
+                            case 17:
+                            case 'end':
+                                return _context2.stop();
+                        }
+                    }
+                }, _callee2, this, [[0, 14]]);
+            }));
+
+            function atualizarStatus(_x) {
+                return _ref2.apply(this, arguments);
+            }
+
+            return atualizarStatus;
         }()
     },
     mounted: function () {
-        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
-            var _this = this;
-
+        var _ref3 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee3() {
             var response;
-            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee3$(_context3) {
                 while (1) {
-                    switch (_context2.prev = _context2.next) {
+                    switch (_context3.prev = _context3.next) {
                         case 0:
-                            _context2.prev = 0;
-                            _context2.next = 3;
-                            return axios.get('https://sidespe-api.herokuapp.com/courses');
+                            _context3.prev = 0;
+                            _context3.next = 3;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
 
                         case 3:
-                            response = _context2.sent;
+                            response = _context3.sent;
 
-                            this.courses = [{
-                                "code": 1,
-                                "name": "ADS",
-                                "description": "Análise e Desenvolvimento",
-                                "grades": [{
-                                    "name": " TURMA F106",
-                                    "period": "6",
-                                    "shift": "DAY_SHIFT"
-                                }, {
-                                    "name": " TURMA F105",
-                                    "period": "5",
-                                    "shift": "NIGHT_SHIFT"
-                                }],
-                                "users": [{
-                                    "code": 2
-                                }, {
-                                    "code": 1
-                                }]
-                            }, {
-                                "code": 2,
-                                "name": "ADS",
-                                "description": "Análise e Desenvolvimento",
-                                "grades": [{
-                                    "name": " TURMA F106",
-                                    "period": "6",
-                                    "shift": "DAY_SHIFT"
-                                }, {
-                                    "name": " TURMA F105",
-                                    "period": "5",
-                                    "shift": "NIGHT_SHIFT"
-                                }],
-                                "users": [{
-                                    "code": 1
-                                }, {
-                                    "code": 4
-                                }]
-                            }, {
-                                "code": 4,
-                                "name": "dsfdsdADS",
-                                "description": "Análise e Desenvolvimento",
-                                "grades": [{
-                                    "name": " TURMA F106",
-                                    "period": "6",
-                                    "shift": "DAY_SHIFT"
-                                }, {
-                                    "name": " TURMA F105",
-                                    "period": "5",
-                                    "shift": "NIGHT_SHIFT"
-                                }],
-                                "users": [{
-                                    "code": 5
-                                }, {
-                                    "code": 4
-                                }]
-                            }, {
-                                "code": 7,
-                                "name": "hyhyjyjyADS",
-                                "description": "Análise e Desenvolvimento",
-                                "grades": [{
-                                    "name": " TURMA F106",
-                                    "period": "6",
-                                    "shift": "DAY_SHIFT"
-                                }, {
-                                    "name": " TURMA F105",
-                                    "period": "5",
-                                    "shift": "NIGHT_SHIFT"
-                                }],
-                                "users": [{
-                                    "code": 1
-                                }, {
-                                    "code": 4
-                                }]
-                            }];
-                            this.courses.forEach(function (course) {
-                                course.users.forEach(function (user) {
-                                    if (user.code == _this.localUser.code) {
-                                        _this.coursesUser.push(course);
-                                    }
-                                });
-                            });
-                            _context2.next = 11;
+                            this.courses = response.data;
+
+                            _context3.next = 10;
                             break;
 
-                        case 8:
-                            _context2.prev = 8;
-                            _context2.t0 = _context2['catch'](0);
+                        case 7:
+                            _context3.prev = 7;
+                            _context3.t0 = _context3['catch'](0);
 
-                            console.log(_context2.t0);
+                            console.log(_context3.t0);
 
-                        case 11:
+                        case 10:
                         case 'end':
-                            return _context2.stop();
+                            return _context3.stop();
                     }
                 }
-            }, _callee2, this, [[0, 8]]);
+            }, _callee3, this, [[0, 7]]);
         }));
 
         function mounted() {
-            return _ref2.apply(this, arguments);
+            return _ref3.apply(this, arguments);
         }
 
         return mounted;
@@ -59275,7 +60447,7 @@ function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, a
 });
 
 /***/ }),
-/* 134 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59325,7 +60497,7 @@ var render = function() {
                 _vm._v("Selecione o curso...")
               ]),
               _vm._v(" "),
-              _vm._l(_vm.coursesUser, function(course) {
+              _vm._l(_vm.courses, function(course) {
                 return _c(
                   "option",
                   { key: course.code, domProps: { value: course.code } },
@@ -59350,7 +60522,1185 @@ var render = function() {
           _c(
             "tbody",
             [
-              _vm._l(_vm.ocurrences, function(ocurrence) {
+              _vm._l(_vm.projects, function(project) {
+                return _c("tr", { key: project.code }, [
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(project.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    Professor " +
+                        _vm._s(project.requesting.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
+                        _vm._s(
+                          project.requestedDate
+                            .split("-")
+                            .reverse()
+                            .join("-")
+                        ) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _c(
+                      "a",
+                      {
+                        attrs: {
+                          href: "#",
+                          "data-toggle": "modal",
+                          "data-target": "#detalhe" + project.code
+                        }
+                      },
+                      [
+                        _vm._v(
+                          "\n                        Ver Detalhes\n                    "
+                        )
+                      ]
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "detalhe" + project.code,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "removerModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(2, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body " }, [
+                              _c("ul", { staticClass: "list-group" }, [
+                                _vm._m(3, true),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  {
+                                    staticClass: "list-group-item text-center"
+                                  },
+                                  [_vm._v(_vm._s(project.name))]
+                                ),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Solicitante: ")]),
+                                  _vm._v(
+                                    "Professor " +
+                                      _vm._s(project.requesting.name)
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Resumo:")]),
+                                  _vm._v(" " + _vm._s(project.summary))
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Data:")]),
+                                  _vm._v(
+                                    " " +
+                                      _vm._s(
+                                        project.requestedDate
+                                          .split("-")
+                                          .reverse()
+                                          .join("-")
+                                      )
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                project.status == "WAITING_FOR_APROVAL"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _vm._v("Aguardando Aprovação")
+                                        ]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary float-right",
+                                            attrs: {
+                                              "data-toggle": "modal",
+                                              "data-target":
+                                                "#status" + project.code
+                                            }
+                                          },
+                                          [_vm._v("Atualizar Status")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "APPROVED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-success" },
+                                          [_vm._v("Aprovado")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary float-right",
+                                            attrs: {
+                                              "data-toggle": "modal",
+                                              "data-target":
+                                                "#status" + project.code
+                                            }
+                                          },
+                                          [_vm._v("Atualizar Status")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "PENDING"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-warning" },
+                                          [_vm._v("Pendente")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary float-right",
+                                            attrs: {
+                                              "data-toggle": "modal",
+                                              "data-target":
+                                                "#status" + project.code
+                                            }
+                                          },
+                                          [_vm._v("Atualizar Status")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "REFUSED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v("Recusado")]
+                                        ),
+                                        _vm._v(" "),
+                                        _c(
+                                          "button",
+                                          {
+                                            staticClass:
+                                              "btn btn-sm btn-primary float-right",
+                                            attrs: {
+                                              "data-toggle": "modal",
+                                              "data-target":
+                                                "#status" + project.code
+                                            }
+                                          },
+                                          [_vm._v("Atualizar Status")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Justificativas:")]),
+                                  _vm._v(" "),
+                                  project.justifications.length > 0
+                                    ? _c(
+                                        "a",
+                                        {
+                                          attrs: {
+                                            href: "#",
+                                            "data-toggle": "modal",
+                                            "data-target":
+                                              "#justificativa" + project.code
+                                          }
+                                        },
+                                        [_vm._v("Ver Justificativas")]
+                                      )
+                                    : _c("span", [
+                                        _vm._v(
+                                          "Nenhuma justificativa adicionada pelo coordenador"
+                                        )
+                                      ])
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [
+                                    _vm._v("Critérios Avaliativos:")
+                                  ]),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "ol",
+                                    _vm._l(project.criterions, function(
+                                      criterio
+                                    ) {
+                                      return _c("li", { key: criterio.name }, [
+                                        _vm._v(
+                                          _vm._s(criterio.name) +
+                                            " (" +
+                                            _vm._s(criterio.point) +
+                                            ")."
+                                        )
+                                      ])
+                                    })
+                                  )
+                                ]),
+                                _vm._v(" "),
+                                _c("li", { staticClass: "list-group-item" }, [
+                                  _c("strong", [_vm._v("Anexo:")]),
+                                  _vm._v(" "),
+                                  _c(
+                                    "a",
+                                    {
+                                      attrs: {
+                                        href:
+                                          "https://sidespe-api.herokuapp.com/projects/downloadFile/" +
+                                          project.attachment.fileName,
+                                        target: "_blank"
+                                      }
+                                    },
+                                    [_vm._v("Ver Documento")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "status" + project.code,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "removerModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(4, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body " }, [
+                              _c("ul", { staticClass: "list-group" }, [
+                                _vm._m(5, true),
+                                _vm._v(" "),
+                                _c("li", [
+                                  _vm._m(6, true),
+                                  _vm._v(" "),
+                                  _c(
+                                    "select",
+                                    {
+                                      directives: [
+                                        {
+                                          name: "model",
+                                          rawName: "v-model",
+                                          value: project.status,
+                                          expression: "project.status"
+                                        }
+                                      ],
+                                      staticClass: "form-control borda-input",
+                                      attrs: { name: "tipo" },
+                                      on: {
+                                        change: function($event) {
+                                          var $$selectedVal = Array.prototype.filter
+                                            .call(
+                                              $event.target.options,
+                                              function(o) {
+                                                return o.selected
+                                              }
+                                            )
+                                            .map(function(o) {
+                                              var val =
+                                                "_value" in o
+                                                  ? o._value
+                                                  : o.value
+                                              return val
+                                            })
+                                          _vm.$set(
+                                            project,
+                                            "status",
+                                            $event.target.multiple
+                                              ? $$selectedVal
+                                              : $$selectedVal[0]
+                                          )
+                                        }
+                                      }
+                                    },
+                                    [
+                                      _c("option", { attrs: { value: "" } }, [
+                                        _vm._v("Selecione o status...")
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        {
+                                          attrs: {
+                                            value: "WAITING_FOR_APROVAL"
+                                          }
+                                        },
+                                        [_vm._v("Aguardando Aprovação")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "PENDING" } },
+                                        [_vm._v("Pendente")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "APPROVED" } },
+                                        [_vm._v("Aprovado")]
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "option",
+                                        { attrs: { value: "REFUSED" } },
+                                        [_vm._v("Recusado")]
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "label",
+                                    { attrs: { for: "Justificativa" } },
+                                    [_vm._v("Justificativa")]
+                                  ),
+                                  _vm._v(" "),
+                                  _c("textarea", {
+                                    directives: [
+                                      {
+                                        name: "model",
+                                        rawName: "v-model",
+                                        value: _vm.justification.description,
+                                        expression: "justification.description"
+                                      }
+                                    ],
+                                    staticClass: "form-control borda-input",
+                                    attrs: {
+                                      name: "descricao",
+                                      placeholder: "Justicação...",
+                                      id: "descricao",
+                                      maxlength: "255"
+                                    },
+                                    domProps: {
+                                      value: _vm.justification.description
+                                    },
+                                    on: {
+                                      input: function($event) {
+                                        if ($event.target.composing) {
+                                          return
+                                        }
+                                        _vm.$set(
+                                          _vm.justification,
+                                          "description",
+                                          $event.target.value
+                                        )
+                                      }
+                                    }
+                                  }),
+                                  _vm._v(" "),
+                                  _c("br"),
+                                  _vm._v(" "),
+                                  _c(
+                                    "button",
+                                    {
+                                      staticClass:
+                                        "btn btn-sm btn-primary float-right",
+                                      attrs: { "data-dismiss": "modal" },
+                                      on: {
+                                        click: function($event) {
+                                          _vm.atualizarStatus(project)
+                                        }
+                                      }
+                                    },
+                                    [_vm._v("Atualizar Status")]
+                                  )
+                                ])
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    {
+                      staticClass: "modal fade",
+                      attrs: {
+                        id: "justificativa" + project.code,
+                        tabindex: "-1",
+                        role: "dialog",
+                        "aria-labelledby": "removerModalLabel",
+                        "aria-hidden": "true"
+                      }
+                    },
+                    [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "modal-dialog",
+                          attrs: { role: "document" }
+                        },
+                        [
+                          _c("div", { staticClass: "modal-content" }, [
+                            _vm._m(7, true),
+                            _vm._v(" "),
+                            _c("div", { staticClass: "modal-body " }, [
+                              _c("ul", { staticClass: "list-group" }, [
+                                _vm._m(8, true),
+                                _vm._v(" "),
+                                project.status == "WAITING_FOR_APROVAL"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c("span", [
+                                          _vm._v("Aguardando Aprovação")
+                                        ])
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "APPROVED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-success" },
+                                          [_vm._v("Aprovado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "PENDING"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-warning" },
+                                          [_vm._v("Pendente")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                project.status == "REFUSED"
+                                  ? _c(
+                                      "li",
+                                      { staticClass: "list-group-item" },
+                                      [
+                                        _c("strong", [_vm._v("Status:")]),
+                                        _vm._v(" "),
+                                        _c(
+                                          "span",
+                                          { staticClass: "text-danger" },
+                                          [_vm._v("Recusado")]
+                                        )
+                                      ]
+                                    )
+                                  : _vm._e(),
+                                _vm._v(" "),
+                                _c(
+                                  "li",
+                                  { staticClass: "list-group-item" },
+                                  [
+                                    _c("strong", [_vm._v("Justificativas:")]),
+                                    _vm._v(" "),
+                                    _c("br"),
+                                    _vm._v(" "),
+                                    _vm._l(project.justifications, function(
+                                      justification
+                                    ) {
+                                      return _c(
+                                        "ol",
+                                        { key: justification.code },
+                                        [
+                                          _c("li", [
+                                            _vm._v(
+                                              _vm._s(justification.description)
+                                            )
+                                          ])
+                                        ]
+                                      )
+                                    })
+                                  ],
+                                  2
+                                )
+                              ])
+                            ])
+                          ])
+                        ]
+                      )
+                    ]
+                  )
+                ])
+              }),
+              _vm._v(" "),
+              _vm.projects.length === 0
+                ? _c("tr", [
+                    _c("td", { attrs: { colspan: "4" } }, [
+                      _vm._v("Nenhum projeto foi encontrado.")
+                    ])
+                  ])
+                : _vm._e()
+            ],
+            2
+          )
+        ]
+      )
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Selecione o curso" } }, [
+      _vm._v("Selecione o curso"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", { staticClass: "text-primary" }, [
+      _c("tr", [
+        _c("th", [_vm._v("\n                    Nome\n                ")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                    Solicitante\n                ")
+        ]),
+        _vm._v(" "),
+        _c("th", [_vm._v("\n                    Data\n                ")])
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item text-center" }, [
+      _c("h5", { staticClass: "mb-0 mt-0" }, [_vm._v("Projeto")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item text-center" }, [
+      _c("h6", { staticClass: "mb-0 mt-0" }, [_vm._v("Projeto")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "Status" } }, [
+      _vm._v("Status"),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger f-16",
+          attrs: { title: "Campo obrigatório" }
+        },
+        [_vm._v("*")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-hidden": "true"
+          }
+        },
+        [_vm._v("X")]
+      )
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("li", { staticClass: "list-group-item text-center" }, [
+      _c("h5", { staticClass: "mb-0 mt-0" }, [_vm._v("Justificativas")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0774744a", module.exports)
+  }
+}
+
+/***/ }),
+/* 144 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__(145)
+}
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(147)
+/* template */
+var __vue_template__ = __webpack_require__(148)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/js/components/reports/Reports.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-3da16358", Component.options)
+  } else {
+    hotAPI.reload("data-v-3da16358", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 145 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(146);
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__(4)("3407aaba", content, false, {});
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3da16358\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reports.vue", function() {
+     var newContent = require("!!../../../../node_modules/css-loader/index.js!../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-3da16358\",\"scoped\":false,\"hasInlineConfig\":true}!../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0!./Reports.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(3)(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+
+// exports
+
+
+/***/ }),
+/* 147 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__ = __webpack_require__(50);
+
+
+function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    data: function data() {
+        return {
+            ocurrences: [],
+            ocurrenceList: [],
+            courses: [],
+            courseSelect: '',
+            dateStart: '',
+            dateEnd: '',
+            localUser: __WEBPACK_IMPORTED_MODULE_1__util_LOCALUSER__["a" /* default */]
+        };
+    },
+
+    methods: {
+        filtrarDados: function () {
+            var _ref = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee() {
+                var response;
+                return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee$(_context) {
+                    while (1) {
+                        switch (_context.prev = _context.next) {
+                            case 0:
+                                _context.prev = 0;
+                                _context.next = 3;
+                                return axios.get('https://sidespe-api.herokuapp.com/ocurrences/' + this.courseSelect + '/courses');
+
+                            case 3:
+                                response = _context.sent;
+
+                                this.ocurrences = response.data.sort(function (a, b) {
+                                    return new Date(a.createdAt) - new Date(b.createdAt);
+                                });
+                                this.ocurrenceList = this.ocurrences;
+                                this.dateStart = '';
+                                this.dateEnd = '';
+                                _context.next = 13;
+                                break;
+
+                            case 10:
+                                _context.prev = 10;
+                                _context.t0 = _context['catch'](0);
+
+                                if (_context.t0.response.status = 404) {
+                                    this.ocurrences = [];
+                                    this.ocurrenceList = [];
+                                }
+
+                            case 13:
+                            case 'end':
+                                return _context.stop();
+                        }
+                    }
+                }, _callee, this, [[0, 10]]);
+            }));
+
+            function filtrarDados() {
+                return _ref.apply(this, arguments);
+            }
+
+            return filtrarDados;
+        }(),
+        filtrarPorData: function filtrarPorData() {
+            var _this = this;
+
+            if (this.ocurrences) {
+                if (this.dateStart && this.dateEnd && this.dateStart <= this.dateEnd) {
+                    this.ocurrenceList = this.ocurrences.filter(function (ocurrence) {
+                        return ocurrence.createdAt >= _this.dateStart && ocurrence.createdAt <= _this.dateEnd;
+                    });
+                } else if (this.dateStart) {
+                    this.ocurrenceList = this.ocurrences.filter(function (ocurrence) {
+                        return ocurrence.createdAt >= _this.dateStart;
+                    });
+                } else if (this.dateEnd) {
+                    this.ocurrenceList = this.ocurrences.filter(function (ocurrence) {
+                        return ocurrence.createdAt <= _this.dateEnd;
+                    });
+                } else {
+                    this.ocurrenceList = this.ocurrences;
+                }
+            }
+        }
+    },
+    mounted: function () {
+        var _ref2 = _asyncToGenerator( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.mark(function _callee2() {
+            var response;
+            return __WEBPACK_IMPORTED_MODULE_0_babel_runtime_regenerator___default.a.wrap(function _callee2$(_context2) {
+                while (1) {
+                    switch (_context2.prev = _context2.next) {
+                        case 0:
+                            _context2.prev = 0;
+                            _context2.next = 3;
+                            return axios.get('https://sidespe-api.herokuapp.com/courses/' + this.localUser.code + '/users');
+
+                        case 3:
+                            response = _context2.sent;
+
+                            this.courses = response.data;
+
+                            _context2.next = 10;
+                            break;
+
+                        case 7:
+                            _context2.prev = 7;
+                            _context2.t0 = _context2['catch'](0);
+
+                            console.log(_context2.t0);
+
+                        case 10:
+                        case 'end':
+                            return _context2.stop();
+                    }
+                }
+            }, _callee2, this, [[0, 7]]);
+        }));
+
+        function mounted() {
+            return _ref2.apply(this, arguments);
+        }
+
+        return mounted;
+    }()
+});
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "table-responsive" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.courseSelect,
+                  expression: "courseSelect"
+                }
+              ],
+              staticClass: "form-control borda-input",
+              attrs: { name: "tipo" },
+              on: {
+                change: [
+                  function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.courseSelect = $event.target.multiple
+                      ? $$selectedVal
+                      : $$selectedVal[0]
+                  },
+                  _vm.filtrarDados
+                ]
+              }
+            },
+            [
+              _c("option", { attrs: { value: "" } }, [
+                _vm._v("Selecione o curso...")
+              ]),
+              _vm._v(" "),
+              _vm._l(_vm.courses, function(course) {
+                return _c(
+                  "option",
+                  { key: course.code, domProps: { value: course.code } },
+                  [_vm._v(_vm._s(course.name))]
+                )
+              })
+            ],
+            2
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _c("label", { attrs: { for: "Data Início" } }, [
+            _vm._v("Data Início")
+          ]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.dateStart,
+                expression: "dateStart"
+              }
+            ],
+            staticClass: "form-control borda-input",
+            attrs: { type: "date", placeholder: "Selecione a data..." },
+            domProps: { value: _vm.dateStart },
+            on: {
+              change: _vm.filtrarPorData,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.dateStart = $event.target.value
+              }
+            }
+          })
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group col-md-3" }, [
+          _c("label", { attrs: { for: "Data Fim" } }, [_vm._v("Data Fim")]),
+          _vm._v(" "),
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.dateEnd,
+                expression: "dateEnd"
+              }
+            ],
+            staticClass: "form-control borda-input",
+            attrs: { type: "date", placeholder: "Selecione a data..." },
+            domProps: { value: _vm.dateEnd },
+            on: {
+              change: _vm.filtrarPorData,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.dateEnd = $event.target.value
+              }
+            }
+          })
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "table",
+        {
+          staticClass: "table table-striped",
+          staticStyle: { "margin-bottom": "60px" }
+        },
+        [
+          _vm._m(1),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.ocurrenceList, function(ocurrence) {
                 return _c("tr", { key: ocurrence.code }, [
                   _c("td", [
                     _vm._v(
@@ -59411,9 +61761,9 @@ var render = function() {
                 ])
               }),
               _vm._v(" "),
-              _vm.ocurrences.length === 0
+              _vm.ocurrenceList.length === 0
                 ? _c("tr", [
-                    _c("td", { attrs: { colspan: "5" } }, [
+                    _c("td", { attrs: { colspan: "3" } }, [
                       _vm._v("Nenhuma ocorrência foi encontrada.")
                     ])
                   ])
@@ -59492,15 +61842,9 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-407408e4", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-3da16358", module.exports)
   }
 }
-
-/***/ }),
-/* 135 */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
 
 /***/ })
 /******/ ]);

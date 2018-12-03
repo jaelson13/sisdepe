@@ -160,8 +160,24 @@ Route::get('/new_project', function () {
 });
 //Ocurrences Coordinator
 Route::get('/demandas', function () {
-    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('TEACHER')){
+    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('COORDINATOR')){
         return view('pages.ocurrence_coordinator.ocurrences');
+    }else{
+        return redirect('/');
+    }     
+});
+//Projects Coordinator
+Route::get('/projetos', function () {
+    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('COORDINATOR')){
+        return view('pages.project_coordinator.projects');
+    }else{
+        return redirect('/');
+    }     
+});
+//Reports
+Route::get('/relatorios', function () {
+    if(isset($_COOKIE["isLogging"]) && $_COOKIE["isLogging"] == base64_encode('COORDINATOR')){
+        return view('pages.reports.reports');
     }else{
         return redirect('/');
     }     

@@ -1,47 +1,46 @@
 <template>
     <div>
         <div class="table-responsive">
+             <div class="row">                                                                           
+                <div class="form-group col-md-3">                            
+                    <label for="Selecione o curso">Selecione o curso<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
+                    <select v-model="courseSelect" v-on:change="filtrarDados"  name="tipo" class="form-control borda-input" >
+                        <option value="">Selecione o curso...</option>
+                        <option v-for="course in courses" v-bind:key="course.code" :value=course.code>{{course.name}}</option>                                                                
+                    </select>
+               </div>
+            </div>
             <table class="table table-striped" style="margin-bottom: 60px;">
                 <thead class="text-primary">
                 <tr>
-                    <th class="td">
+                    <th>
                         Nome
                     </th>
                     <th>
-                        Resumo
+                        Solicitante
                     </th>
                     <th>
-                        Data do Projeto
-                    </th>
-                    <th>
-                        Status
+                        Data
                     </th>
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="project in projects" v-bind:key="project.code">
-                    
-                    <td>
+                <tr v-for="project in projects" v-bind:key="project.code">                                   
+                    <td >
                         {{project.name}}
                     </td>
                     <td>
-                        {{project.summary}}
+                        Professor {{project.requesting.name}}
                     </td>
                     <td>
                         {{project.requestedDate.split('-').reverse().join('-')}}
                     </td>
+                   
                     <td>
-                        <span v-if="project.status == 'WAITING_FOR_APROVAL'">Aguardando Aprovação</span>
-                        <span v-if="project.status == 'APPROVED'" class='text-success'>Aprovado</span>
-                        <span v-if="project.status == 'PENDING'" class='text-warning'>Pendente</span>
-                        <span v-if="project.status == 'REFUSED'" class='text-danger'>Recusado</span>
-                    </td>
-                    <td>
-                        <a href="" data-toggle="modal" v-bind:data-target="'#detalhe'+project.code" >
+                        <a href="#" data-toggle="modal" v-bind:data-target="'#detalhe'+project.code">
                             Ver Detalhes
                         </a>
                     </td>
-
                     <!-- Inicio Modal --> 
                     <!-- Modal Detalhes --> 
                     <div class="modal fade" v-bind:id="'detalhe'+project.code" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel" aria-hidden="true">
@@ -59,12 +58,16 @@
                                         <li class="list-group-item"><strong>Resumo:</strong> {{project.summary}}</li>
                                         <li class="list-group-item"><strong>Data:</strong> {{project.requestedDate.split('-').reverse().join('-')}}</li>
                                         <li class="list-group-item" v-if="project.status == 'WAITING_FOR_APROVAL'"><strong>Status:</strong> <span>Aguardando Aprovação</span>
+                                        <button data-toggle="modal" v-bind:data-target="'#status'+project.code" class="btn btn-sm btn-primary float-right">Atualizar Status</button>                                                                       
                                         </li>                                       
                                         <li class="list-group-item" v-if="project.status == 'APPROVED'"><strong>Status:</strong> <span class='text-success'>Aprovado</span>
+                                         <button data-toggle="modal" v-bind:data-target="'#status'+project.code" class="btn btn-sm btn-primary float-right">Atualizar Status</button>
                                         </li>
                                         <li class="list-group-item" v-if="project.status == 'PENDING'"><strong>Status:</strong> <span class='text-warning'>Pendente</span>
+                                         <button data-toggle="modal" v-bind:data-target="'#status'+project.code" class="btn btn-sm btn-primary float-right">Atualizar Status</button>
                                         </li>
                                         <li class="list-group-item" v-if="project.status == 'REFUSED'"><strong>Status:</strong> <span class='text-danger'>Recusado</span>
+                                         <button data-toggle="modal" v-bind:data-target="'#status'+project.code" class="btn btn-sm btn-primary float-right">Atualizar Status</button>
                                         </li>
                                         <li class="list-group-item">                                        
                                             <strong>Justificativas:</strong> 
@@ -77,6 +80,37 @@
                                             </ol>    
                                         </li>
                                         <li class="list-group-item"><strong>Anexo:</strong> <a :href="'https://sidespe-api.herokuapp.com/projects/downloadFile/'+project.attachment.fileName" target="_blank">Ver Documento</a></li>                
+                                    </ul>
+                                </div>                                
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Modal Status -->
+                    <div class="modal fade" v-bind:id="'status'+project.code" tabindex="-1" role="dialog" aria-labelledby="removerModalLabel" aria-hidden="true">
+                        <div class="modal-dialog" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">X</button>
+                                </div>                            
+                                <div class="modal-body ">
+                                    <ul class="list-group">                                        
+                                        <li class="list-group-item text-center"><h6 class="mb-0 mt-0">Projeto</h6></li>
+                                        <li>
+                                            <label for="Status">Status<span class="text-danger f-16" title="Campo obrigatório">*</span></label>                                                 
+                                            <select v-model="project.status" name="tipo" class="form-control borda-input" >
+                                                <option value="">Selecione o status...</option>
+                                                <option value="WAITING_FOR_APROVAL">Aguardando Aprovação</option>
+                                                <option value="PENDING">Pendente</option>                                                                
+                                                <option value="APPROVED">Aprovado</option>                                                                
+                                                <option value="REFUSED">Recusado</option>                                                                
+                                            </select>
+                                        
+                                            <label for="Justificativa">Justificativa</label>                                     
+                                            <textarea v-model='justification.description' class="form-control borda-input" name="descricao" placeholder="Justicação..." id="descricao" maxlength="255"></textarea>                                                    
+                                                
+                                            <br>                                            
+                                            <button class="btn btn-sm btn-primary float-right" v-on:click="atualizarStatus(project)" data-dismiss="modal">Atualizar Status</button>                                                                                   
+                                        </li>
                                     </ul>
                                 </div>                                
                             </div>
@@ -116,10 +150,11 @@
                 </tr>
 
                 <tr v-if="projects.length === 0" >
-                    <td colspan="5">Nenhum projeto foi encontrado.</td>
+                    <td colspan="4">Nenhum projeto foi encontrado.</td>
                 </tr>
 
                 </tbody>
+
             </table>
         </div>
     </div>
@@ -131,17 +166,50 @@ export default {
     data(){
         return {
             projects: [],
-            localUser: localUser,
-            justification: ''
+            courses: [],            
+            courseSelect: '',
+            justification: {},
+            localUser: localUser
         }
     },
     methods:{
-        
+       async filtrarDados(){
+            try {                                
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/projects/courses/${this.courseSelect}`);   
+                if(response.status === 200){
+                this.projects = response.data.sort((a,b) => new Date(a.requestedDate) - new Date(b.requestedDate));                
+                }
+                if(response.status === 204){
+                    this.projects = []
+                }
+            } catch (err) {
+                console.log(err)
+            }
+        },
+        async atualizarStatus(project){
+            try {                     
+                console.log(project)           
+                const response = await axios.put(`https://sidespe-api.herokuapp.com/projects/${project.code}`, project);   
+                if(response.status === 201){
+                console.log('Status atualizado')
+                }     
+                console.log(this.justification)
+                if(this.justification.description){
+                    const response2 = await axios.put(`https://sidespe-api.herokuapp.com/projects/${project.code}/justifications`, [this.justification]);   
+                    if(response2.status === 201){
+                    console.log('Justification atualizado')
+                    }            
+                }
+            } catch (err) {
+                console.log(err.response)
+            }
+        } 
     },
     async mounted(){           
-            try{                                               
-                const response = await axios.get(`https://sidespe-api.herokuapp.com/projects/${this.localUser.code}/teachers`);   
-                this.projects = response.data;                
+            try{    
+                const response = await axios.get(`https://sidespe-api.herokuapp.com/courses/${this.localUser.code}/users`);   
+                this.courses = response.data;                                             
+                               
             }catch(err){
                 console.log(err);
             }

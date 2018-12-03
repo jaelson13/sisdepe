@@ -6,7 +6,7 @@
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
-            <h5 class="title pt-2">Editar Curso</h5>
+            <h5 class="title pt-2">Cursos</h5>
         </div>
 
 

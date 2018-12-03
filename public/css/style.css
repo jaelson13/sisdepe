@@ -131,6 +131,14 @@ body{
     white-space: nowrap;
     display: block;
 }
+.td-epaco-fixo{
+    width: 500px;
+    max-width: 500px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    display: block;
+}
 .modal-visualizar{
     max-height: calc(100vh - 200px);
     overflow-y: auto;

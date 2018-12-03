@@ -7,7 +7,7 @@
                     <div class="container">
                         <div class="row mt-3">
                             <div class="col-12">
-                                <h3 class="text-center" style="font-family: 'roboto', cursive;">SISDEPE</h3>
+                                <h3 class="text-center" style="font-family: 'roboto', cursive;">SISDEPE<i class="fa fa-book ml-2"> </i></h3>
                             </div>
                         </div>
 

@@ -27,19 +27,6 @@
                     <td>
                         {{ocurrence.createdAt.split('-').reverse().join('-')}}
                     </td>
-
-                    <td class="float-right mr-3">
-                        <a href="#" class="dropdown " data-toggle="dropdown">
-                            <i class="material-icons">
-                                more_horiz
-                            </i>
-                        </a>
-                        <ul class="dropdown-menu" style="padding-left: 10px; " role="menu">
-                            <li><a :href="'/edit_ocurrence/'+ocurrence.code">Editar</a></li>                            
-                            <li><a href="#">Desativar Usuário</a></li>
-                        </ul>
-
-                    </td>
                 </tr>
 
                 <tr v-if="ocurrences.length === 0" >
@@ -59,15 +46,20 @@ export default {
         return {
             ocurrences: [],
             localUser: localUser
+
         }
     },
     methods:{
         
     },
+    computed:{
+       
+    },
     async mounted(){           
             try{                               
                 const response = await axios.get(`https://sidespe-api.herokuapp.com/ocurrences/teachers/${this.localUser.code}`);   
-                this.ocurrences = response.data;                
+                this.ocurrences = response.data;     
+                console.log(this.ocurrences)           
             }catch(err){
                 console.log(err);
             }

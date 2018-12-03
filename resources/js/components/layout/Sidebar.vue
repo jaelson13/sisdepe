@@ -1,4 +1,4 @@
-<template>
+<template>    
     <div>
         <div v-show="isAdmin">
             <li>
@@ -30,9 +30,21 @@
             <li>
                 <a href="/demandas">
                     <i class="fa fa-book"></i>
-                    <p>Demandas</p>
+                    <p>Ocorrencias</p>
                 </a>
             </li> 
+            <li>
+                <a href="/projetos">
+                    <i class="fa fa-book"></i>
+                    <p>Projetos</p>
+                </a>
+            </li>
+            <li>
+                <a href="/relatorios">
+                    <i class="fa fa-book"></i>
+                    <p>Relatórios</p>
+                </a>
+            </li>
         </div>
         <div v-show="isTeacher">
             <li>
@@ -58,24 +70,25 @@ export default {
         return{
             isAdmin: false,
             isCoordinator: false,
-            isTeacher: false
+            isTeacher: false,
+            localUser: localUser,            
         }
     },
     mounted(){    
-        if(localUser.type === 'COORDINATOR'){
+        if(this.localUser.type === 'COORDINATOR'){
             this.isAdmin = false;
             this.isCoordinator = true;
             this.isTeacher = false;
         }
-        if(localUser.type === 'ADMINISTRATOR'){
+        if(this.localUser.type === 'ADMINISTRATOR'){
             this.isAdmin = true;
             this.isCoordinator = false;
-            this.isTeacher = false;
+            this.isTeacher = false;            
         }
-        if(localUser.type === 'TEACHER'){
+        if(this.localUser.type === 'TEACHER'){
             this.isAdmin = false;
             this.isCoordinator = false;
-            this.isTeacher = true;
+            this.isTeacher = true;            
         }
     }
 }

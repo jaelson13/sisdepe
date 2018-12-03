@@ -6,12 +6,12 @@
 <div class="card-header">
     <div class="row">
         <div class="col-md-4">
-            <h5 class="title pt-2">Tipos de Ocorrências</h5>
+            <h5 class="title pt-2">Ocorrências</h5>
         </div>
 
 
         <div class="col-md-8 pr-5">
-            <a class="float-right" href="/typesofocurrences">
+            <a class="float-right" href="/ocurrences">
                 <span class="input-group-text" id="basic-addon1">
                       <i class="material-icons">keyboard_backspace</i>
                 </span>
