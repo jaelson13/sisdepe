@@ -59633,7 +59633,7 @@ exports = module.exports = __webpack_require__(4)(false);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -59651,6 +59651,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 function _asyncToGenerator(fn) { return function () { var gen = fn.apply(this, arguments); return new Promise(function (resolve, reject) { function step(key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { return Promise.resolve(value).then(function (value) { step("next", value); }, function (err) { step("throw", err); }); } } return step("next"); }); }; }
 
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -59897,6 +59903,14 @@ var render = function() {
                   _c("td", [
                     _vm._v(
                       "\n                    " +
+                        _vm._s(ocurrence.requesting.name) +
+                        "\n                "
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("td", [
+                    _vm._v(
+                      "\n                    " +
                         _vm._s(
                           ocurrence.createdAt
                             .split("-")
@@ -59911,7 +59925,7 @@ var render = function() {
               _vm._v(" "),
               _vm.ocurrences.length === 0
                 ? _c("tr", [
-                    _c("td", { attrs: { colspan: "3" } }, [
+                    _c("td", { attrs: { colspan: "4" } }, [
                       _vm._v("Nenhuma ocorrência foi encontrada.")
                     ])
                   ])
@@ -59952,6 +59966,10 @@ var staticRenderFns = [
         ]),
         _vm._v(" "),
         _c("th", [_vm._v("\n                    Tipo\n                ")]),
+        _vm._v(" "),
+        _c("th", [
+          _vm._v("\n                    Solicitante\n                ")
+        ]),
         _vm._v(" "),
         _c("th", [_vm._v("\n                    Data\n                ")])
       ])

@@ -20,6 +20,9 @@
                         Tipo
                     </th>
                     <th>
+                        Solicitante
+                    </th>
+                    <th>
                         Data
                     </th>
                 </tr>
@@ -34,12 +37,15 @@
                         {{ocurrence.type.name}}
                     </td>
                     <td>
+                        {{ocurrence.requesting.name}}
+                    </td>
+                    <td>
                         {{ocurrence.createdAt.split('-').reverse().join('-')}}
                     </td>                
                 </tr>
 
                 <tr v-if="ocurrences.length === 0" >
-                    <td colspan="3">Nenhuma ocorrência foi encontrada.</td>
+                    <td colspan="4">Nenhuma ocorrência foi encontrada.</td>
                 </tr>
 
                 </tbody>
